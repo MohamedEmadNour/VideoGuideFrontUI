@@ -1,0 +1,39 @@
+
+h6 {
+    display: inline-block;
+    margin-left: 4%;
+    margin-right: 4%;
+    margin-bottom: 0;
+}
+div.scrolling-limit{
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.37);
+    overflow:hidden;
+    white-space:nowrap;
+    color: rgb(255, 255, 255);    
+  }
+
+  @media only screen and (max-width: 1000px) {
+
+    h6 {
+      color: rgb(255, 255, 255);
+      font-size: 70%;
+      /* font-family: fantasy; */
+    }
+  }
+  @media only screen and (max-width: 500px) {
+
+    h6 {
+        color: rgb(255, 255, 255);
+        font-size: 50%;
+      /* font-family: fantasy; */
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    h6 {
+        color: rgb(255, 255, 255);
+        font-size: 50%;
+      /* font-family: fantasy; */
+    }
+  }
+ 

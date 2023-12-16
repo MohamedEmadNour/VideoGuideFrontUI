@@ -1,0 +1,53 @@
+<section>
+    <div *ngIf="isNormalUser">
+        <div class="text-center">
+                <h2 *ngIf="!this.itarbs" >Catrgores</h2>
+                <h2 *ngIf="this.itarbs" >تجميعات</h2>
+        </div>
+        <div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gap-2 justify-content-center " >
+                <div class="col-lg-4 Carding"   *ngFor="let item of Grups" >
+                    <div routerLink="/catrgores/tags" *ngIf="!this.itarbs" (click)="ValueUserChose(item.Lantin_GroupName , item.GroupID)">
+                        <figure>
+                            <img  [src]="item.Image" width="200" [alt]="item.Lantin_GroupName">
+                        </figure>
+                        <figcaption>
+                            <h2 class="text-black" >{{item.Lantin_GroupName}} </h2>
+                        </figcaption>
+                    </div>
+                    <div routerLink="/catrgores/tags" *ngIf="this.itarbs" (click)="ValueUserChose(item.Local_GroupName , item.GroupID)">
+                        <figure>
+                            <img  [src]="item.Image" width="200" [alt]="item.Lantin_GroupName">
+                        </figure>
+                        <figcaption>
+                            <h2 class="text-black" >  {{item.Local_GroupName}} </h2>
+                        </figcaption>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="isNormalAdmin">
+        <div  class="text-center">
+            <h2 *ngIf="!this.itarbs" >Group Option</h2>
+            <h2 *ngIf="this.itarbs" >اختيارات المجموعه</h2>
+        </div>
+        <div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gap-2 justify-content-center " >
+                <div class="col-6" *ngFor="let item of Array_FormGroup" >
+                    <div class="container p-4" *ngIf="item.ngif" [routerLink]="item.routerLink">
+                        <div class="card-wrap">
+                            <div class="card-header three">
+                              <img src="../../assets/Image/Option04.png" width="150" alt="IT">
+                            </div>
+                            <div class="card-content">
+                                <h4 *ngIf="!this.itarbs" >  {{item.label_Content}} </h4>
+                                <h4 *ngIf="this.itarbs">  {{item.label_Contentar}} </h4>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

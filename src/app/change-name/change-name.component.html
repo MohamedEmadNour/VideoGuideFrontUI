@@ -1,0 +1,19 @@
+<div class="text-center">
+    <h2>Change Your Name</h2>
+</div>
+<div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+    <div class="container p-4">
+        <form [formGroup]="UserNameChangeForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <label for="userName"> Current Name</label>
+            <input type="text" id="userName" formControlName="userName" class="form-control" required>
+          </div>
+          <div class="form-group mt-2">
+            <label for="fullName">New Name</label>
+            <input type="text" id="fullName" formControlName="fullName" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary mt-2">Change Name</button>
+        </form>
+        <div class="popup" id="popup"></div>
+      </div>
+</div>

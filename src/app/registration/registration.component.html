@@ -1,0 +1,32 @@
+<section>
+  <div class="container">
+      <h2>Registration</h2>
+    </div>
+
+      <div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label for="userName">User name:</label>
+          <input type="text" id="userName" formControlName="userName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" id="password" formControlName="password" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="fullName">Full Name:</label>
+          <input type="text" id="fullName" formControlName="fullName" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="roles">User role:</label>
+          <ng-select id="roles" class="form-control" formControlName="roles"   [multiple]="true" >
+            <ng-option> User </ng-option>
+            <ng-option> Admin </ng-option>
+            <ng-option *ngIf="isSuperAdmin" > SuperAdmin </ng-option>
+          </ng-select>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3" [disabled]="!registrationForm.valid">Register</button>
+        <div class="popup" id="popup"></div>
+      </form>
+    </div>
+</section>

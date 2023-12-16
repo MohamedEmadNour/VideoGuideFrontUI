@@ -1,0 +1,88 @@
+h2{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+@media only screen and (max-width: 720px) {
+    h2{
+        font-size: 1.5rem ;
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    h2{
+        font-size: 1.2rem ;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    h2{
+        font-size: 0.9rem ;
+    }
+  }
+  @media only screen and (max-width: 400px) {
+    h2{
+        font-size: 0.8rem ;
+    }
+  }
+
+
+
+.Rightline {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999999999999999999999999999999999;
+}
+
+
+.SideBar{
+  position: fixed;
+  left: 0.5%;
+  bottom: 10%;
+}
+
+.router {
+  width: 69%;
+  height: 75vh;
+  position: fixed;
+  right: 3%;
+  top: 5%;
+}
+.text-bg-dark{
+  background-color: white !important;
+}
+.lang {
+  position: fixed;
+  right: 0.5%;
+  top: 1%;
+}
+
+.Rightlinearab {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 999999999999999999999999999999999999;
+}
+
+.SideBararab {
+  position: fixed;
+  right: 0.5%;
+  bottom: 10%;
+}
+
+.routerarab {
+  width: 69%;
+  height: 75vh;
+  position: fixed;
+  left: 3%;
+  top: 5%;
+}
+
+.langarab {
+  position: fixed;
+  left: 0.5%;
+  top: 1%;
+}
+
+
+
+

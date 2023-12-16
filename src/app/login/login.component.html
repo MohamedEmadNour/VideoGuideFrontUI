@@ -1,0 +1,27 @@
+<section>
+  <div  >
+    <div class="container text-center d-flex justify-content-center">
+      <ng-container *ngIf="!isLoggedIn">
+        <form [formGroup]="loginForm" (submit)="onSubmit()">
+          <div class="form-group form-floating">
+            <input type="text" formControlName="userName" class="form-control" id="userName" placeholder="Username">
+            <label for="userName" *ngIf="!this.itarbs" >User Code</label>
+            <label for="userName" *ngIf="this.itarbs" >الرقم الكودى</label>
+
+          </div>
+          <div class="form-group form-floating">
+            <input type="password" class="form-control" formControlName="password" id="password" placeholder="Password">
+            <label for="password" *ngIf="!this.itarbs" >Password</label>
+            <label for="password" *ngIf="this.itarbs">كلمه السر</label>
+
+          </div>
+          <div class="form-floating">
+            <button type="submit" *ngIf="!this.itarbs" class="btn btn-outline-primary mt-3">Login</button>
+            <button type="submit" *ngIf="this.itarbs" class="btn btn-outline-primary mt-3">تسجيل الدخول</button>
+          </div>
+        </form>
+        <div class="popup" id="popup"></div>
+      </ng-container>
+    </div>
+  </div>
+</section>

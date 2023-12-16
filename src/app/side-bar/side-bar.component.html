@@ -1,0 +1,165 @@
+<section >
+    <div>
+        <div class="container text-center">
+            <div [ngClass]=" getbarclass()" *ngIf="isNormalUser && !isNormalAdmin">
+                <div [ngClass]="gettoggleclass()" *ngIf="isLoggedIn" (click)="onUserToggle()">
+                    <span [ngClass]=" getUserplace()" >{{username}} </span>
+                </div>
+                <div class="bar opened dark" *ngIf="isLoggedIn && !isUserIcons" (click)="onUserClickedCat()">
+                    <div class="icon text-center" >
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="icon" routerLink="/home" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="text " *ngIf="!this.englag" >Home</span>
+                        <span class="text " *ngIf="this.englag" >الرئيسيه</span>
+                    </div>
+                    <div class="icon" routerLink="/Favorite" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-user-pen"></i>
+                        <span class="text" *ngIf="!this.englag" >Favorite</span>
+                        <span class="text" *ngIf="this.englag" >المفضله</span>
+
+                    </div>
+                    <div class="icon" routerLink="/catrgores"  routerLinkActive="bg-success">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span class="text" *ngIf="!this.englag" >Category</span>
+                        <span class="text" *ngIf="this.englag" >تجميعات</span>
+
+                    </div>
+                    <div class="icon" routerLink="/search" (click)="onUserClickTags()" routerLinkActive="bg-success" >
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <span class="text" *ngIf="!this.englag" >Search</span>
+                        <span class="text" *ngIf="this.englag" >البحث</span>
+
+                    </div>
+                    <div class="icon" routerLink="/massagems" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-comment-dots"></i>
+                        <span class="text" *ngIf="!this.englag" >Connect Us</span>
+                        <span class="text" *ngIf="this.englag" >تواصل معنا</span>
+
+                    </div>
+                    <div class="icon signout">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 17" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 9V7H8V5h4V3l4 3-4 3zm-2 3H6V3L2 1h8v3h1V1c0-.55-.45-1-1-1H1C.45 0 0 .45 0 1v11.38c0 .39.22.73.55.91L6 16.01V13h4c.55 0 1-.45 1-1V8h-1v4z"></path>
+                        </svg>
+                        <span class="text" *ngIf="!this.englag" (click)="logout()">Sign Out</span>
+                        <span class="text" *ngIf="this.englag" (click)="logout()">تسجيل الخروج</span>
+
+                    </div>
+                </div>
+                <div class="bar dark iconss" *ngIf="isLoggedIn && isUserIcons">
+                    <div class="icon" routerLink="/home" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <div class="icon" routerLink="/changeName" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </div>
+                    <div class="icon" routerLink="/catrgores" (click)="onUserClickedCat()" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div class="icon" routerLink="/search" (click)="onUserClickTags()" routerLinkActive="bg-success" >
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <div class="icon" routerLink="/massagems" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-comment-dots"></i>
+                    </div>
+                    <div class="icon signout" (click)="logout()">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 17" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 9V7H8V5h4V3l4 3-4 3zm-2 3H6V3L2 1h8v3h1V1c0-.55-.45-1-1-1H1C.45 0 0 .45 0 1v11.38c0 .39.22.73.55.91L6 16.01V13h4c.55 0 1-.45 1-1V8h-1v4z"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="bar opened" *ngIf="isInData" >
+                    <div class="icon" (click)="onUserClickedCat()" routerLink="/catrgores/tags" *ngIf="CatrgoresName" >
+                        <span class="text"    >{{CatrgoresName}} </span>
+                    </div>
+                    <div class="icon"  (click)="onUserClickedTag()"  *ngIf="TagsNameState" routerLink="/catrgores/tags/Videos">
+                        <span class="text"  >{{TagsName}} </span>
+                    </div>
+                </div>
+            </div>
+            <!-- the part of admin side bar -->
+            <div [ngClass]=" getbarclass()" *ngIf="!isNormalUser && isNormalAdmin">
+                <div [ngClass]="gettoggleclass()" *ngIf="isLoggedIn" (click)="onUserToggle()">
+                    <span [ngClass]=" getUserplace()" >{{username}} </span>
+                </div>
+                <div class="bar opened dark" *ngIf="isLoggedIn && !isUserIcons">
+                    <div class="icon" >
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <div class="icon" routerLink="/home" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-house"></i>
+                        <span class="text " *ngIf="!this.englag"   >Home</span>
+                        <span class="text " *ngIf="this.englag"  >الرئيسيه</span>
+
+                    </div>
+                    <div class="icon" routerLink="/Users" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-users"></i>
+                        <span class="text" *ngIf="!this.englag" >Users</span>
+                        <span class="text" *ngIf="this.englag" >المستخدمين</span>
+
+                    </div>
+                    <div class="icon" routerLink="/catrgores" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span class="text" *ngIf="!this.englag" >Category</span>
+                        <span class="text" *ngIf="this.englag" >تجميعات</span>
+
+                    </div>
+                    <div class="icon" routerLink="/videos" (click)="onAdminClickVideo()" routerLinkActive="bg-success" >
+                        <i class="fa-solid fa-video"></i>
+                        <span class="text" *ngIf="!this.englag" >Videos</span>
+                        <span class="text" *ngIf="this.englag" >الفيديوهات</span>
+
+                    </div>
+                    <div class="icon" routerLink="/tags" (click)="adminclick()" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-tags"></i>
+                        <span class="text" *ngIf="!this.englag" >Tags</span>
+                        <span class="text" *ngIf="this.englag" >علامات</span>
+
+                    </div>
+                    <div class="icon" routerLink="/reports" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-book"></i>
+                        <span class="text" *ngIf="!this.englag">Reports</span>
+                        <span class="text" *ngIf="this.englag">تقارير</span>
+
+                    </div>
+                    <div class="icon signout">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 17" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 9V7H8V5h4V3l4 3-4 3zm-2 3H6V3L2 1h8v3h1V1c0-.55-.45-1-1-1H1C.45 0 0 .45 0 1v11.38c0 .39.22.73.55.91L6 16.01V13h4c.55 0 1-.45 1-1V8h-1v4z"></path>
+                        </svg>
+                        <span class="text" *ngIf="!this.englag" (click)="logout()">Sign Out</span>
+                        <span class="text" *ngIf="this.englag" (click)="logout()">تسجيل الخروج</span>
+                    </div>
+                </div>
+                <div class="bar dark iconss" *ngIf="isLoggedIn && isUserIcons">
+                    <div class="icon" routerLink="/home" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-house"></i>
+                    </div>
+                    <div class="icon" routerLink="/Users" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+                    <div class="icon" routerLink="/catrgores" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-layer-group"></i>
+                    </div>
+                    <div class="icon" routerLink="/video" (click)="onUserClickTags()" routerLinkActive="bg-success" >
+                        <i class="fa-solid fa-video"></i>
+                    </div>
+                    <div class="icon" routerLink="/tags" (click)="adminclick()" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-tags"></i>
+                    </div>
+                    <div class="icon" routerLink="/reports" routerLinkActive="bg-success">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+                    <div class="icon signout" (click)="logout()">
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 17" height="2.5em" width="2.5em" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" d="M12 9V7H8V5h4V3l4 3-4 3zm-2 3H6V3L2 1h8v3h1V1c0-.55-.45-1-1-1H1C.45 0 0 .45 0 1v11.38c0 .39.22.73.55.91L6 16.01V13h4c.55 0 1-.45 1-1V8h-1v4z"></path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="" *ngIf="!isLoggedIn">
+                <app-login></app-login>
+            </div>
+        </div>
+    </div>
+</section>

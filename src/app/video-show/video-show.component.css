@@ -1,0 +1,33 @@
+div.text-bg-dark {
+    height: 75vh;
+}
+
+.text-bg-dark{
+    background-color: unset !important;
+  }
+
+  pre {
+    color: black;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    width: 100%;
+}
+.fav {
+  cursor: pointer;
+}
+
+.popup {
+  color: rgb(0, 0, 0);
+  display: none;
+  background-color: #00000052;
+  padding: 5%;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 999999999999999999;
+}

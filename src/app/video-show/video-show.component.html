@@ -1,0 +1,15 @@
+<section>
+    <div class="text-center">
+            <h2>{{VideoName}}</h2>
+    </div>
+    <div class="p-3 text-bg-dark rounded-4 mb-5 mt-3 text-center ">
+                <video class="shadow rounded-5 " width="95%"  controls >
+                    <source [src]="VideoUrl" type="video/mp4">
+                </video>
+                <div (click)="openAddingFav(VideoID , UserID)" class="text-black fav">
+                    <h2>Mark as Favorite <i class="fa-solid fa-star" [ngStyle]="{ 'color': vidFav ? 'yellow' : 'black' }"></i></h2>
+                </div>
+                <div class="popup" id="popup"></div>
+
+    </div>
+</section>

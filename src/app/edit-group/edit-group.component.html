@@ -1,0 +1,49 @@
+<section>
+    <div class="text-center">
+      <h2>Edit Group</h2>
+    </div>
+    <div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+      <div class="container p-4">
+        <form [formGroup]="registrationForm"  enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="GroupID">Group Name:</label>
+            <ng-select id="GroupID" class="form-control" formControlName="GroupID" (ngModelChange)="onGroupChange($event) ;">
+                <ng-option *ngFor="let GroupOption of GroupOptions" [value]="GroupOption.Lantin_GroupName">{{GroupOption!.Lantin_GroupName}}</ng-option>
+            </ng-select>
+          </div>
+          <div *ngIf="selectedGroupCase">
+              <div class="form-group">
+                <label for="visable">visable:</label>
+                <ng-select id="visable" class="form-control" formControlName="visable" >
+                    <ng-option> True </ng-option>
+                    <ng-option> false </ng-option>
+                </ng-select>
+              </div>
+              <div class="form-group">
+                <label for="Lantin_GroupName">Lantin_GroupName:</label>
+                <input type="text" id="Lantin_GroupName" [(ngModel)]="selectedGroup!.Lantin_GroupName" formControlName="Lantin_GroupName" class="form-control" >
+              </div>
+              <div class="form-group">
+                <label for="Local_GroupName">Local_GroupName:</label>
+                <input type="text" id="Local_GroupName" [(ngModel)]="selectedGroup!.Local_GroupName" formControlName="Local_GroupName" class="form-control" >
+              </div>
+              <div class="form-group">
+                <label for="Group_Photo_Location">Group_Photo_Location:</label>
+                <input type="text" id="Group_Photo_Location" [(ngModel)]="selectedGroup!.Group_Photo_Location" formControlName="Group_Photo_Location" class="form-control" >
+              </div>
+              <div class="form-group">
+                <label for="Image">Image (JPG only):</label>
+                <input type="file" (change)="onFileSelected($event)" accept="image/jpeg" name="Image" id="Image" class="form-control"  />
+              </div>
+              <div class="form-group">
+                <label for="listId">listId:</label>
+                <input type="text" id="listId" formControlName="listId" class="form-control" >
+              </div>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3" (click)="onSubmit()">Edit Group</button>
+          <div class="popup" id="popup"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+  

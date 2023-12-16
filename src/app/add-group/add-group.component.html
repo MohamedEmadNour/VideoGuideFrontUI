@@ -1,0 +1,31 @@
+<section>
+    <div class="text-center">
+      <h2>Add Group</h2>
+    </div>
+    <div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+      <div class="container p-4">
+        <form [formGroup]="registrationForm"  enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="Lantin_GroupName">Lantin_GroupName:</label>
+            <input type="text" id="Lantin_GroupName" formControlName="Lantin_GroupName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="Local_GroupName">Local_GroupName:</label>
+            <input type="text" id="Local_GroupName" formControlName="Local_GroupName" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label for="Image">Image (JPG only):</label>
+            <input type="file" (change)="onFileSelected($event)" accept="image/jpeg" name="Image" id="Image" class="form-control" required />
+            <!-- You can also use 'accept=".jpg, .jpeg"' for file extensions -->
+          </div>
+          <div class="form-group">
+            <label for="listId">listId:</label>
+            <input type="text" id="listId" formControlName="listId" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary mt-3" (click)="onSubmit()">Add Group</button>
+          <div class="popup" id="popup"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+  

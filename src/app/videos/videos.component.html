@@ -1,0 +1,108 @@
+<section>
+    <div class="text-center">
+        <h2> Video Option </h2>
+    </div>
+    <div class="p-4 text-bg-dark shadow rounded-4 mb-5 mt-3" *ngIf="this.isVideo" >
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 gap-2 justify-content-center ">
+            <div class="col-6" *ngFor="let item of Array_FormGroup" >
+                <div class="container p-4" (click)="AdminVideoHandeling(item.label_Content)" >
+                    <div class="card-wrap">
+                        <div class="card-header three">
+                          <img src="../../assets/Image/Option04.png" width="150" alt="IT">
+                        </div>
+                        <div class="card-content">
+                          <h4 class="card-title" *ngIf="!this.itarbs" > {{item.label_Content}} </h4>
+                          <h4 class="card-title" *ngIf="this.itarbs" > {{item.label_Contentar}} </h4>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="addVideo && !updateVideo">
+        <div class="text-center">
+          <h2>Add Video</h2>
+        </div>
+        <div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+          <div class="container p-4">
+            <form [formGroup]="registrationForm"  enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="Video_Lantin_Title">Video_Lantin_Title :</label>
+                <input type="text" id="Video_Lantin_Title" formControlName="Video_Lantin_Title" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="Video_Local_Tiltle">Video_Local_Tiltle :</label>
+                <input type="text" id="Video_Local_Tiltle" formControlName="Video_Local_Tiltle" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="Video_Lantin_Description">Video_Lantin_Description :</label>
+                <input type="text" id="Video_Lantin_Description" formControlName="Video_Lantin_Description" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="Video_Local_Description">Video_Local_Description :</label>
+                <input type="text" id="Video_Local_Description" formControlName="Video_Local_Description" class="form-control" required>
+              </div>
+              <div class="form-group">
+                <label for="Video">Video :</label>
+                <input type="file" (change)="onFileSelected($event)" name="Video" id="Video" class="form-control" required />
+              </div>
+              <button type="submit" class="btn btn-primary mt-3" (click)="onSubmit()">Add Video</button>
+              <div class="popup" id="popup"></div>
+            </form>
+          </div>
+        </div>
+    </div>
+    <div *ngIf="updateVideo && !addVideo">
+        <div class="text-center">
+          <h2>Update Video</h2>
+        </div>
+        <div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+          <div class="container p-4">
+            <form [formGroup]="registrationForm"  enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="VideoID">Video Name :</label>
+                    <ng-select id="VideoID" class="form-control" formControlName="VideoID" (ngModelChange)="onVideoChange($event) ;">
+                        <ng-option *ngFor="let VideoOption of VideoOptions" [value]="VideoOption.Video_Lantin_Title ">{{VideoOption!.Video_Lantin_Title}}</ng-option>
+                    </ng-select>
+                </div>
+                <div *ngIf="selectedVideoCase">
+                    <div class="form-group">
+                        <label for="Video_Location">Video_Location :</label>
+                        <input type="text" id="Video_Location" [(ngModel)]="selectedVideo!.Video_Photo_Location" formControlName="Video_Location" class="form-control" >
+                      </div>
+                    <div class="form-group">
+                        <label for="visable">visable :</label>
+                        <ng-select id="visable" class="form-control" formControlName="visable" >
+                            <ng-option> True </ng-option>
+                            <ng-option> false </ng-option>
+                        </ng-select>
+                    </div>
+                    <div class="form-group">
+                        <label for="Video_Lantin_Title">Video_Lantin_Title :</label>
+                        <input type="text" id="Video_Lantin_Title" [(ngModel)]="selectedVideo!.Video_Lantin_Title" formControlName="Video_Lantin_Title" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Video_Local_Tiltle">Video_Local_Tiltle :</label>
+                        <input type="text" id="Video_Local_Tiltle" [(ngModel)]="selectedVideo!.Video_Local_Tiltle" formControlName="Video_Local_Tiltle" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Video_Lantin_Description">Video_Lantin_Description :</label>
+                        <input type="text" id="Video_Lantin_Description" [(ngModel)]="selectedVideo!.Video_Lantin_Description" formControlName="Video_Lantin_Description" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Video_Local_Description">Video_Local_Description :</label>
+                        <input type="text" id="Video_Local_Description" [(ngModel)]="selectedVideo!.Video_Local_Description" formControlName="Video_Local_Description" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Video">Video :</label>
+                        <input type="file" (change)="onFileSelected($event)" name="Video" id="Video" class="form-control" required />
+                    </div>
+                </div>
+              <button type="submit" class="btn btn-primary mt-3" (click)="onSubmit()">Update Video</button>
+              <div class="popup" id="popup"></div>
+            </form>
+          </div>
+        </div>
+    </div>
+</section>
+  

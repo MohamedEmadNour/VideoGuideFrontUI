@@ -1,0 +1,37 @@
+<section>
+    <div>
+        <div class="text-center">
+            <h2>{{getvaluetextMassage()}}</h2>
+        </div>
+        <div class="p-4 text-bg-dark shadow rounded-4 mb-5 mt-3">
+            <div class="row">
+                <div class="col-6">
+                    <div class="container p-4">
+                        <form [formGroup]="UserNameText" (ngSubmit)="onSubmit()">
+                            <label for="UserText">  {{getvaluetextSuggest()}} </label>
+                            <textarea type="textarea" id="UserText" formControlName="UserText" class="form-control"  required>
+                            </textarea>   
+                            <button type="submit" class="btn btn-primary mt-2"> {{getvaluetextsent()}} </button>
+                        </form>
+                        <div class="popup" id="popup"></div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <div class="container p-4">
+                        <div class="card-wrap">
+                            <div class="card-header three">
+                              <img src="../../assets/Image/Option04.png" width="150" alt="IT">
+                            </div>
+                            <div class="card-content">
+                              <h4 class="card-title">{{  getvaluetext()}} </h4>
+                              <p class="card-text"> 30006 </p>
+
+
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
