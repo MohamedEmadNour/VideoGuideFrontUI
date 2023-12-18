@@ -83,7 +83,7 @@ export class LoginComponent implements OnInit {
       const credentials = this.loginForm.value;
       this.phoneListService.login(credentials).subscribe( {
         next:(response: any) => {
-           console.log(response.user.Id);
+          //  console.log(response.user.Id);
           this.username = this.loginForm.value.userName;
           // console.log(this.username);
           this.userId = response.user.Id

@@ -26,6 +26,11 @@ export class TagsComponent {
   selectedTag : any ;
   selectedTagCase : boolean = false
   TagID : any ;
+  GroupID : any ;
+
+
+  GroupOptions : any ;
+  selectedGroup : any ;
 
 
   isInData = false;
@@ -65,6 +70,7 @@ export class TagsComponent {
 
       TagID: [''],
       visable: [''],
+      GroupID: [''],
       Lantin_TagName: ['', Validators.required],
       Local_TagName: ['', Validators.required],
       Tag_Photo_Location: [''],
@@ -116,6 +122,20 @@ export class TagsComponent {
         // this.loadingState = 'notLoading';
       },
     });
+    this.phoneListService.getAllGroups().subscribe({
+      next: (dataGroup: any) => {
+        // console.log(data);
+        this.GroupOptions = dataGroup
+        
+        // this.phoneListData = data;
+        // console.log(this.phoneListData);
+      
+      },
+      error: () => {
+        // console.error('Error fetching phone list data:', error);
+        // this.loadingState = 'notLoading';
+      },
+    });
   }
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
@@ -129,7 +149,7 @@ export class TagsComponent {
     if (typeof selectedTag === 'string') {
       const selectedTagData = this.TagOptions.find((Tag: { Lantin_TagName: string; }) =>
         Tag.Lantin_TagName.trim() === selectedTag.trim()
-        );
+    );
         // console.log(selectedTagData);
   
         this.TagID = selectedTagData?.TagID
@@ -160,13 +180,13 @@ export class TagsComponent {
     
       this.phoneListService.EditTag(formData, headers).subscribe({
         next: (response: any) => {
-          this.LoginShowPopup('Add Tag Successful');
+          this.LoginShowPopup('Edit Tag Successful');
           this.TagForm.reset();
           this.selectedTagCase = false
           // console.log(response);
         },
         error: (error: any) => {
-          this.LoginShowPopup('Add Tag Failed');
+          this.LoginShowPopup('Edit Tag Failed');
           // console.log(error);
           // console.log(formData);
           // console.log(this.registrationForm.value.visable.$ngOptionLabel);
@@ -175,11 +195,24 @@ export class TagsComponent {
     }
     if (this.addtags) {
       if (this.selectedFile) {
+        // const listGroupID = []; 
+
+        // if (Array.isArray(this.TagForm.value.GroupID)) {
+        //   listGroupID.push(...this.GroupID);
+        // } else {
+        //   listGroupID.push(this.GroupID);
+        // }
         const formData = new FormData();
 
         formData.append('Lantin_TagName', this.TagForm.value.Lantin_TagName);
         formData.append('Local_TagName', this.TagForm.value.Local_TagName);
         formData.append('Image', this.selectedFile, this.selectedFile.name);
+        formData.append('listGroupID', this.GroupID);
+
+        // for (let i = 0; i < listGroupID.length; i++) {
+        //   formData.append('listGroupID', listGroupID[i]);
+        // }
+
         const headers = new HttpHeaders({
           Accept : '*/*',
         });
@@ -196,7 +229,7 @@ export class TagsComponent {
             this.LoginShowPopup('Add Tag Failed');
             // console.log(error);
             // console.log(formData);
-            // console.log(this.registrationForm.value.visable.$ngOptionLabel);
+            // console.log(this.TagForm.value);
           }
         }); 
         
@@ -257,4 +290,21 @@ export class TagsComponent {
       
     }
   }
+  onGroupChange(selectedGroup : any){
+    // console.log(selectedGroup);
+
+    
+    const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string; }) =>
+      Group.Lantin_GroupName.trim()
+      );
+      // console.log(selectedGroupData);
+
+      this.GroupID = selectedGroupData?.GroupID
+      this.selectedGroup = selectedGroupData
+      // console.log(this.GroupID);
+      // console.log(this.selectedGroup);
+      // console.log(selectedGroupData);
+    
+  }
+  
 }

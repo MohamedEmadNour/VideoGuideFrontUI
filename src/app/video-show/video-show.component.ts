@@ -73,9 +73,13 @@ openAddingFav(VideoID: number, id: any): void {
         // console.log(VideoID , id );
         // console.log(response);
         if (this.vidFav) {
+          this.vidFav = false
+
           this.LoginShowPopup("Video Removed From Favorite Succ" , ` #00cc6d52 `)
         }
         else {
+           this.vidFav = true
+
           this.LoginShowPopup("Video Add To Favorite Succ" , ` #00cc6d52 `)
         }
 
