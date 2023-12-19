@@ -15,6 +15,9 @@ export class VideosComponent {
   selectedFile: File | undefined;
   addVideo : boolean = false
   updateVideo : boolean = false
+  TagOptions : any ;
+  selectedTag : any ;
+  TagID : any ;
 
   VideoOptions : any ;
   selectedVideo : any ;
@@ -33,6 +36,7 @@ export class VideosComponent {
     ) {
     this.registrationForm = this.fb.group({
       VideoID : ['', Validators.required],
+      TagID : [''],
       Video_Location : ['', Validators.required],
       Video_Lantin_Title : ['', Validators.required],
       Video_Local_Tiltle : ['', Validators.required],
@@ -75,6 +79,20 @@ export class VideosComponent {
         // this.loadingState = 'notLoading';
       },
     });
+    this.phoneListService.getAllTags().subscribe({
+      next: (data: any) => {
+        // console.log(data);
+        this.TagOptions = data
+        
+        // this.phoneListData = data;
+        // console.log(this.phoneListData);
+      
+      },
+      error: () => {
+        // console.error('Error fetching phone list data:', error);
+        // this.loadingState = 'notLoading';
+      },
+    });
   }
 
 
@@ -93,17 +111,23 @@ export class VideosComponent {
         formData.append('Video_Lantin_Description', this.registrationForm.value.Video_Lantin_Description);
         formData.append('Video_Local_Description', this.registrationForm.value.Video_Local_Description);
         formData.append('Video', this.selectedFile, this.selectedFile.name);
-  
+        for (let i = 0; i < this.TagID.length; i++) {
+          formData.append(`listTagID[${i}]`, this.TagID[i].toString());
+        }
+
+        
+        console.log(formData);
+        
         this.phoneListService.AddVideo(formData).subscribe({
           next: (response: any) => {
             this.LoginShowPopup('Add Group Successful');
             this.registrationForm.reset();
-            // console.log(response);
+            console.log(response);
             
           },
           error: (error: any) => {
             this.LoginShowPopup('Add Group Failed');
-            // console.log(error);
+            console.log(error);
   
           }
         });
@@ -209,9 +233,38 @@ export class VideosComponent {
     },
   ]
 
-
-
-
-
+  onTagChange(selectedTag: any) {
+    if (typeof selectedTag === 'string' || selectedTag instanceof String) {
+      // Handle single selection
+      const selectedTagName = Array.isArray(selectedTag) ? selectedTag[0] : selectedTag;
+      const selectedTagData = this.TagOptions.find((Tag: { Lantin_TagName: string }) =>
+        Tag.Lantin_TagName.trim() === selectedTagName.trim()
+      );
+  
+      if (selectedTagData) {
+        this.TagID = [Number(selectedTagData.TagID)]; // Wrap single ID in an array
+        this.selectedTag = selectedTagData;
+      }
+    } else if (Array.isArray(selectedTag)) {
+      // Handle multiple selections
+      this.TagID = selectedTag.map(tag => {
+        const selectedTagData = this.TagOptions.find((Tag: { Lantin_TagName: string }) =>
+          Tag.Lantin_TagName.trim() === tag.trim()
+        );
+        return selectedTagData ? Number(selectedTagData.TagID) : null;
+      }).filter(id => id !== null);
+  
+      // Ensure this.TagID is an array with each index corresponding to the tag ID value
+      const tempArray = [];
+      for (let i = 0; i < this.TagID.length; i++) {
+        tempArray[i] = this.TagID[i];
+      }
+      this.TagID = tempArray;
+      console.log(this.TagID);
+      
+    }  
+  }
+  
+  
   
 }

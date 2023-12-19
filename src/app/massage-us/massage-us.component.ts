@@ -82,7 +82,7 @@ export class MassageUsComponent {
   getvaluetextMassage()
   {
     if (!this.itarbs) {
-      return `Connect Us`
+      return `Contact us`
     }
     else return `تواصل معنا`
   }

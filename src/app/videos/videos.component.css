@@ -78,3 +78,32 @@ textarea {
     color: #000000;
 
   }
+
+  /* ================ */
+.Selected {
+  background-color: grey;
+  padding: 2%;
+  color: white;
+  border-radius: 1%;
+  border: 1px solid #007bff ;
+}
+::ng-deep .ng-select {
+  /* Your custom styles for ng-select here */
+  /* For example, change the border and background color */
+  border: 2px solid #007bff;
+  background-color: #f4f4f4;
+}
+
+::ng-deep .ng-option {
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #302830;
+  margin: 0.5rem;
+  padding: 0.5rem;
+  text-align: center;
+}
