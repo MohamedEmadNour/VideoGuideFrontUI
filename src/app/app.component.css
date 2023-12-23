@@ -82,7 +82,65 @@ h2{
   left: 0.5%;
   top: 1%;
 }
-
+@media screen and (max-width: 1000px) {
+  .Rightline {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999999999999999999999999999999999;
+  }
+  
+  
+  .SideBar{
+    position: fixed;
+    left: 0.5%;
+    bottom: 10%;
+    z-index: 9999999999999999999999999999999999999999999999999;
+  }
+  
+  .router {
+    width: 90%;
+    height: 75vh;
+    position: fixed;
+    right: 5%;
+    top: 25%;
+  }
+  .text-bg-dark{
+    background-color: white !important;
+  }
+  .lang {
+    position: fixed;
+    right: 0.5%;
+    top: 1%;
+  }
+  
+  .Rightlinearab {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999999999999999999999999999999999999;
+  }
+  .SideBararab {
+    position: fixed;
+    left: 0.5%;
+    bottom: 10%;
+    z-index: 9999999999999999999999999999999999999999999999999;
+  }
+  .routerarab {
+    width: 90%;
+    height: 75vh;
+    position: fixed;
+    right: 5%;
+    top: 25%;
+  }
+  .langarab {
+    position: fixed;
+    left: 0.5%;
+    top: 1%;
+  }
+}
 
 
 

@@ -187,3 +187,8 @@ div.col-lg-4:hover .Hovring{
 	transition: all 1.35s;
 }
 
+@media only screen and (max-width: 1000px) {
+    div.text-bg-dark {
+      height: 45vh;
+  }
+  }

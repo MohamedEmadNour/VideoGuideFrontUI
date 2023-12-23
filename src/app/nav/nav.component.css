@@ -148,53 +148,7 @@ a {
     color: rgb(0, 0, 0);
     /* font-family: fantasy; */
   }
-  @media only screen and (max-width: 1000px) {
-    .brand {
-      position: absolute;
-      top: 1%;
-      left: 3%;
-     
-    }
-    img{
-      width: 100px;
-    }
-    h6 {
-      color: rgb(16, 16, 94);
-      font-size: 70%;
-      /* font-family: fantasy; */
-    }
-  }
-  @media only screen and (max-width: 500px) {
-    .brand {
-      position: absolute;
-      top: 1%;
-      left: 1.5%;
-     
-    }
-    img{
-      width: 90px;
-    }
-    h6 {
-      color: rgb(16, 16, 94);
-      font-size: 50%;
-      /* font-family: fantasy; */
-    }
-  }
-  @media only screen and (max-width: 400px) {
-    .brand {
-      position: absolute;
-      top: 1%;
-      left: 1.5%;
-     
-    }
-    img{
-      width: 80px;
-    }
-    h6 {
-      color: rgb(16, 16, 94);
-      font-size: 50%;
-      /* font-family: fantasy; */
-    }
-  }
+
+
   
  

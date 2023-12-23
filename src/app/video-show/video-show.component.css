@@ -31,3 +31,8 @@ div.text-bg-dark {
   transform: translateX(50%);
   z-index: 999999999999999999;
 }
+@media only screen and (max-width: 1000px) {
+  div.text-bg-dark {
+    height: 45vh;
+}
+}

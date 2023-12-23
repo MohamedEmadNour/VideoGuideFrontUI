@@ -81,4 +81,8 @@ div.text-bg-dark {
 
   }
 
-
+  @media only screen and (max-width: 1000px) {
+    div.text-bg-dark {
+      height: 45vh;
+  }
+  }

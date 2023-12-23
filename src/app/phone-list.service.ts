@@ -9,6 +9,7 @@ export class PhoneListService {
   
   local = `https://localhost:44345`
   pup = `http://172.16.118.6:33333`
+  lap = `http://192.168.1.3:44345`
   public = this.local
   baseUrl = `${this.public}/api/Account`;
   constructor(private _HttpClient: HttpClient) {}
