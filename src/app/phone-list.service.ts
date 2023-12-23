@@ -8,8 +8,8 @@ import { Observable, of } from 'rxjs';
 export class PhoneListService {
   
   local = `https://localhost:44345`
-  pup = `http://172.16.118.6:33333`
-  public = this.local
+  pup = `http://172.16.118.250:85`
+  public = this.pup
   baseUrl = `${this.public}/api/Account`;
   constructor(private _HttpClient: HttpClient) {}
 
