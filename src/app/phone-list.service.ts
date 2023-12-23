@@ -45,7 +45,7 @@ export class PhoneListService {
 
   UpViewForVideo(VideoID : any ): Observable<any> {
 
-    return this._HttpClient.put(`${this.public}/api/VideoGuide/Update_View_Video?VideoID=${VideoID}` ,{VideoID});
+    return this._HttpClient.post(`${this.public}/api/VideoGuide/Update_View_Video?VideoID=${VideoID}` ,{VideoID});
   }
   
   getAllVideo(): Observable<any> {
@@ -87,7 +87,7 @@ export class PhoneListService {
   }
   EditGroup(user: any , headers : any  ): Observable<any> {
     const url = `${this.public}/api/VideoGuide/Update_Groups`;
-    return this._HttpClient.put(url, user , headers);
+    return this._HttpClient.post(url, user , headers);
   }
 
   
@@ -97,7 +97,7 @@ export class PhoneListService {
   }
   EditTag(user: any , headers : any  ): Observable<any> {
     const url = `${this.public}/api/VideoGuide/Update_Tags`;
-    return this._HttpClient.put(url, user , headers);
+    return this._HttpClient.post(url, user , headers);
   }
 
   AddVideo(user: any): Observable<any> {
