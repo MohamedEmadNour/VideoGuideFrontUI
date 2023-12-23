@@ -10,6 +10,7 @@ export class PhoneListService {
   local = `https://localhost:44345`
   pup = `http://172.16.118.6:33333`
   lap = `http://192.168.1.3:44345`
+  
   public = this.local
   baseUrl = `${this.public}/api/Account`;
   constructor(private _HttpClient: HttpClient) {}
@@ -46,7 +47,7 @@ export class PhoneListService {
 
   UpViewForVideo(VideoID : any ): Observable<any> {
 
-    return this._HttpClient.put(`${this.public}/api/VideoGuide/Update_View_Video?VideoID=${VideoID}` ,{VideoID});
+    return this._HttpClient.post(`${this.public}/api/VideoGuide/Update_View_Video?VideoID=${VideoID}` ,{VideoID});
   }
   
   getAllVideo(): Observable<any> {
@@ -88,7 +89,7 @@ export class PhoneListService {
   }
   EditGroup(user: any , headers : any  ): Observable<any> {
     const url = `${this.public}/api/VideoGuide/Update_Groups`;
-    return this._HttpClient.put(url, user , headers);
+    return this._HttpClient.post(url, user , headers);
   }
 
   
@@ -98,7 +99,7 @@ export class PhoneListService {
   }
   EditTag(user: any , headers : any  ): Observable<any> {
     const url = `${this.public}/api/VideoGuide/Update_Tags`;
-    return this._HttpClient.put(url, user , headers);
+    return this._HttpClient.post(url, user , headers);
   }
 
   AddVideo(user: any): Observable<any> {
