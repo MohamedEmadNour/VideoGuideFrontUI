@@ -32,7 +32,7 @@ export class PhoneListService {
   }
 
   getTagsOfCategory(GroupID : any ): Observable<any> {
-    const params = new HttpParams().set('TagID', GroupID);
+    const params = new HttpParams().set('GroupID', GroupID);
     return this._HttpClient.get(`${this.public}/api/VideoGuide/Get_Tags` , { params });
   }
 

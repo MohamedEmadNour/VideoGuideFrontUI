@@ -7,7 +7,7 @@
             <div class="col-lg-4 text-center " *ngFor="let item of Videos" routerLink="/Favorite/Video" (click)="ValueUserChose(item.Video , item.Video_Lantin_Title , item.VideoID)">
                 <div class="position-relative">
                     <video class="shadow rounded-5" width="100%" >
-                        <img src="" alt="">
+                        <img [src]="item.Frame" alt="">
                     </video>
                     <div class="Hovring rounded-5 overflow-y-auto p-2">
                         <pre>{{item.Video_Lantin_Description}}</pre>

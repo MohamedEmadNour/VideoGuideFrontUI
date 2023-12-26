@@ -27,3 +27,11 @@ div.col-lg-4:hover .Hovring{
 	transition: all 1.35s;
 }
 
+.Hovringimg {
+    display: block;
+	position: absolute;
+    top: 2%;
+    left: 2%;
+    right: 2%;
+    bottom: 2%;
+}

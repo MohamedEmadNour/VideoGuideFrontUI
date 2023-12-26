@@ -55,7 +55,7 @@ export class VideoTagsComponent {
   {
     this.phoneListService.getVideosOfTags(TagID ,this.UserId ).subscribe({
       next: (data: any) => {
-        // console.log(data);
+         console.log(data);
         this.Videos = data
         
         // this.phoneListData = data;
