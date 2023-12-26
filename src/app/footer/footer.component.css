@@ -15,9 +15,17 @@ div.scrolling-limit{
 
   @media only screen and (max-width: 1000px) {
 
+    div.scrolling-limit{
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.37);
+      overflow:hidden;
+      white-space:nowrap;
+      color: rgb(255, 255, 255); 
+
+    }
     h6 {
       color: rgb(255, 255, 255);
-      font-size: 70%;
+      font-size: 48%;
       /* font-family: fantasy; */
     }
   }
@@ -25,14 +33,14 @@ div.scrolling-limit{
 
     h6 {
         color: rgb(255, 255, 255);
-        font-size: 50%;
+        font-size:40%;
       /* font-family: fantasy; */
     }
   }
   @media only screen and (max-width: 400px) {
     h6 {
         color: rgb(255, 255, 255);
-        font-size: 50%;
+        font-size: 30%;
       /* font-family: fantasy; */
     }
   }

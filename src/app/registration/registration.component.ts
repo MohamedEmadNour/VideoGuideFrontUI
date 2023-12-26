@@ -17,6 +17,10 @@ export class RegistrationComponent {
   isNormalAdmin = false;
   isNormalUser = false;
 
+  GroupOptions : any ;
+  selectedGroup : any ;
+  GroupID : any ;
+
   constructor(
     private fb: FormBuilder,
      private phoneListService: PhoneListService ,
@@ -27,7 +31,9 @@ export class RegistrationComponent {
       userName: ['', Validators.required],
       password: [''],
       fullName: ['', Validators.required],
-      roles: [[], Validators.required]
+      roles: [[], Validators.required],
+      GroupID : [[], Validators.required]
+
     });
   }
   ngOnInit(): void {
@@ -42,7 +48,28 @@ export class RegistrationComponent {
       // console.log(this.isNormalAdmin);
       
     });
+    this.fetchGroups()
 
+
+  }
+
+  fetchGroups() {
+    // this.loadingState = 'loading';
+
+    this.phoneListService.getAllGroups().subscribe({
+      next: (data: any) => {
+        // console.log(data);
+        this.GroupOptions = data
+        
+        // this.phoneListData = data;
+        // console.log(this.phoneListData);
+      
+      },
+      error: () => {
+        // console.error('Error fetching phone list data:', error);
+        // this.loadingState = 'notLoading';
+      },
+    });
   }
 
   onSubmit() {
@@ -79,6 +106,23 @@ LoginShowPopup(x: string , color : string ): void {
       }
     }, 3500);
   }
+}
+
+onGroupChange(selectedGroup : any){
+  // console.log(selectedGroup);
+
+  
+  const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string; }) =>
+    Group.Lantin_GroupName.trim() === selectedGroup.trim()
+    );
+    // console.log(selectedGroupData);
+
+    this.GroupID = selectedGroupData?.GroupID
+    this.selectedGroup = selectedGroupData
+    // console.log(this.GroupID);
+    // console.log(this.selectedGroup);
+    // console.log(selectedGroupData);
+  
 }
 
 

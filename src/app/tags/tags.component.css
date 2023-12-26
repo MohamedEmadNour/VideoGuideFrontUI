@@ -222,3 +222,8 @@ transform: rotate(-45deg) ;
     color: #000000;
 
   }
+  @media only screen and (max-width: 1000px) {
+    div.text-bg-dark {
+      height: 45vh;
+  }
+  }
