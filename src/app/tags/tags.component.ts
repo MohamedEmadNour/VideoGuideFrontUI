@@ -28,6 +28,10 @@ export class TagsComponent {
   TagID : any ;
   GroupID : any ;
 
+  listGroupID : any[] = []
+
+
+
 
   GroupOptions : any ;
   selectedGroup : any ;
@@ -36,6 +40,7 @@ export class TagsComponent {
   isInData = false;
   edittags : boolean = false
   addtags : boolean = false
+  Assigntags : boolean = false
 
   
 
@@ -65,6 +70,7 @@ export class TagsComponent {
       this.isNormalAdmin = adminclock;
       this.addtags = false
       this.edittags = false
+      this.Assigntags = false
     });
     this.TagForm = this.fb.group({
 
@@ -195,46 +201,64 @@ export class TagsComponent {
     }
     if (this.addtags) {
       if (this.selectedFile) {
-        // const listGroupID = []; 
 
-        // if (Array.isArray(this.TagForm.value.GroupID)) {
-        //   listGroupID.push(...this.GroupID);
-        // } else {
-        //   listGroupID.push(this.GroupID);
-        // }
+
         const formData = new FormData();
-
+    
         formData.append('Lantin_TagName', this.TagForm.value.Lantin_TagName);
         formData.append('Local_TagName', this.TagForm.value.Local_TagName);
         formData.append('Image', this.selectedFile, this.selectedFile.name);
-        formData.append('listGroupID', this.GroupID);
-
-        // for (let i = 0; i < listGroupID.length; i++) {
-        //   formData.append('listGroupID', listGroupID[i]);
-        // }
-
+    
+        for (let i = 0; i < this.listGroupID.length; i++) {
+          formData.append('listGroupID', this.listGroupID[i]);
+        }
+    
         const headers = new HttpHeaders({
-          Accept : '*/*',
+          Accept: '*/*',
         });
-
-
-        this.phoneListService.AddTag(formData , headers ).subscribe({
+    
+        this.phoneListService.AddTag(formData, headers).subscribe({
           next: (response: any) => {
             this.LoginShowPopup('Add Tag Successful');
             this.TagForm.reset();
-            this.selectedTagCase = false
-            // console.log(response);
+            this.selectedTagCase = false;
+            console.log(response);
           },
           error: (error: any) => {
             this.LoginShowPopup('Add Tag Failed');
-            // console.log(error);
-            // console.log(formData);
-            // console.log(this.TagForm.value);
+            console.log(error);
+            console.log(formData);
+            console.log(this.TagForm.value);
           }
-        }); 
-        
+        });
       }
-      
+    }
+    if (this.Assigntags) {
+      this.TagForm = this.fb.group({
+        TagID: [[]], 
+        GroupID: [[]],
+      });
+      const listTagID = this.TagForm.value.TagID.map((tagID: number) => ({ tagID }));
+      const listGroupID = this.TagForm.value.GroupID.map((groupID: number) => ({ groupID }));
+
+      const payload = {
+        listGroupID,
+        listTagID,
+      };
+
+      this.phoneListService.AssignTagsToGroup(payload).subscribe({
+        next: (response: any) => {
+          this.LoginShowPopup('Tags Assign To Group Successful');
+          this.TagForm.reset();
+          this.selectedTagCase = false;
+          // console.log(response);
+        },
+        error: (error: any) => {
+          this.LoginShowPopup('Tags Assign To Group Failed');
+          // console.log(error);
+          // console.log(payload);
+        }
+      });
     }
     
   }
@@ -267,6 +291,11 @@ export class TagsComponent {
       label_Content : 'Edit Tag',
       ngif : `this.isNormalAdmin`,
     },
+    {
+      id : 3,
+      label_Content : 'Assign Tags To Group',
+      ngif : `this.isNormalAdmin`,
+    },
   ]
 
   tagsclick( tagid : number)
@@ -276,19 +305,28 @@ export class TagsComponent {
       this.addtags = true
       this.edittags = false
       this.isNormalAdmin = false
-
+      this.Assigntags = false
+      return;
       
     }
     if (tagid == 2) {
       // console.log(`edittags`);
       this.edittags = true
       this.addtags = false
+      this.Assigntags = false
       this.isNormalAdmin = false
       this.fetchGroups()
-
-      
-      
+      return
+    }    if (tagid == 3) {
+      // console.log(`edittags`);
+      this.Assigntags = true
+      this.edittags = false
+      this.addtags = false
+      this.isNormalAdmin = false
+      this.fetchGroups()
+      return
     }
+     
   }
   onGroupChange(selectedGroup : any){
     // console.log(selectedGroup);
@@ -304,7 +342,21 @@ export class TagsComponent {
       // console.log(this.GroupID);
       // console.log(this.selectedGroup);
       // console.log(selectedGroupData);
-    
+      // this.addTheIdToList(this.GroupID)
   }
+  // addTheIdToList(GroupID : any){
+  //   console.log(GroupID);
+    
+  //   if (this.addtags) {
+  //     if (Array.isArray(this.TagForm.value)) {
+  //       this.listGroupID.push(...GroupID);
+  //       console.log(GroupID);
+
+  //     } else {
+  //       this.listGroupID.push(GroupID);
+  //     }
+  //   }
+  // }
+
   
 }

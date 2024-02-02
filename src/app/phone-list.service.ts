@@ -101,6 +101,10 @@ export class PhoneListService {
     const url = `${this.public}/api/VideoGuide/Update_Tags`;
     return this._HttpClient.post(url, user , headers);
   }
+  AssignTagsToGroup(user: any ): Observable<any> {
+    const url = `${this.public}/api/VideoGuide/AddGroupTag`;
+    return this._HttpClient.post(url, user);
+  }
 
   AddVideo(user: any): Observable<any> {
     const url = `${this.public}/api/VideoGuide/AddVideo`;

@@ -16,6 +16,12 @@
   background: #555; 
 }
 
+.disabled-span {
+	color: #777; 
+	cursor: not-allowed; 
+	pointer-events: none; 
+  }
+
 
 
 

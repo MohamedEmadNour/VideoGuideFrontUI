@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-    <div *ngIf="edittags && !addtags">
+    <div *ngIf="edittags && !addtags && !Assigntags">
         <div class="text-center">
             <h2>Edit Tag</h2>
           </div>
@@ -66,7 +66,7 @@
           </div>
 
     </div>
-    <div *ngIf="addtags && !edittags">
+    <div *ngIf="addtags && !edittags && !Assigntags">
         <div class="text-center">
             <h2>Add Tag</h2>
           </div>
@@ -97,4 +97,29 @@
             </div>
           </div>
     </div>
+    <div *ngIf="!addtags && !edittags && Assigntags">
+      <div class="text-center">
+          <h2>Assign Tags To Group</h2>
+        </div>
+        <div class="p-4 text-bg-dark shadow rounded-4 mb-5 overflow-y-auto mt-3">
+          <div class="container p-4">
+            <form [formGroup]="TagForm"  enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="TagID">Tag Name:</label>
+                <ng-select id="TagID" [multiple]="true" class="form-control" formControlName="TagID" (ngModelChange)="onTagChange($event) ;">
+                    <ng-option *ngFor="let TagOption of TagOptions" [value]="TagOption.Lantin_TagName">{{TagOption!.Lantin_TagName}}</ng-option>
+                </ng-select>
+              </div>
+              <div class="form-group">
+                <label for="GroupID">Group Name:</label>
+                <ng-select id="GroupID"  [multiple]="true" class="form-control" formControlName="GroupID" (ngModelChange)="onGroupChange($event)" >
+                    <ng-option *ngFor="let GroupOption of GroupOptions" [value]="GroupOption.Lantin_GroupName">{{GroupOption!.Lantin_GroupName}}</ng-option>
+                </ng-select>
+              </div>
+              <button type="submit" class="btn btn-primary mt-3" (click)="onSubmit()">Assign Tags To Group</button>
+              <div class="popup" id="popup"></div>
+            </form>
+          </div>
+        </div>
+  </div>
 </section>
