@@ -14,6 +14,7 @@ export class AppComponent  {
   isLoggedIn: boolean = false;
   itarbs: boolean = false;
   itarbsallaw: boolean = false;
+  LoadingScreen: boolean = true;
 
 
   

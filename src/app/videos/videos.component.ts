@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component , OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PhoneListService } from '../phone-list.service';
 import { LoginService } from '../login-servic.service';
@@ -23,6 +23,8 @@ export class VideosComponent {
   selectedVideo : any ;
   selectedVideoCase : boolean = false
   VideoID : any ;
+
+  LoadingScreen : boolean = false
 
 
   itarbs: boolean = false
@@ -58,7 +60,10 @@ export class VideosComponent {
       this.isVideo = isVideo;
       this.video()
     });
+
   }
+
+
 
   
 
@@ -103,8 +108,10 @@ export class VideosComponent {
   }
   
   onSubmit() {
+
     if (this.addVideo) {
       if (this.selectedFile) {
+        this.LoadingScreen = true
         const formData = new FormData();
         formData.append('Video_Lantin_Title', this.registrationForm.value.Video_Lantin_Title);
         formData.append('Video_Local_Tiltle', this.registrationForm.value.Video_Local_Tiltle);
@@ -120,14 +127,17 @@ export class VideosComponent {
         
         this.phoneListService.AddVideo(formData).subscribe({
           next: (response: any) => {
-            this.LoginShowPopup('Add Group Successful');
+            this.LoginShowPopup('Add Video Successful');
             this.registrationForm.reset();
             console.log(response);
+            this.LoadingScreen = false
             
           },
           error: (error: any) => {
-            this.LoginShowPopup('Add Group Failed');
-            console.log(error);
+            this.LoginShowPopup('Add Video Failed');
+            // console.log(error);
+            this.LoadingScreen = false
+
   
           }
         });
@@ -135,6 +145,8 @@ export class VideosComponent {
     }
     if (this.updateVideo) {
       if (this.selectedFile) {
+        this.LoadingScreen = true
+
         const formData = new FormData();
         formData.append('VideoID', this.VideoID );
         formData.append('Video_Local_Tiltle', this.registrationForm.value.Video_Local_Tiltle);
@@ -147,14 +159,18 @@ export class VideosComponent {
   
         this.phoneListService.AddVideo(formData).subscribe({
           next: (response: any) => {
-            this.LoginShowPopup('Add Group Successful');
+            this.LoginShowPopup('Add Video Successful');
             this.registrationForm.reset();
             // console.log(response);
+            this.LoadingScreen = false
+
             
           },
           error: (error: any) => {
-            this.LoginShowPopup('Add Group Failed');
+            this.LoginShowPopup('Add Video Failed');
             // console.log(error);
+            this.LoadingScreen = false
+
   
           }
         });
@@ -264,6 +280,7 @@ export class VideosComponent {
       
     }  
   }
+  
   
   
   

@@ -28,7 +28,8 @@ export class TagsComponent {
   TagID : any ;
   GroupID : any ;
 
-  listGroupID : any[] = []
+
+
 
 
 
@@ -208,10 +209,10 @@ export class TagsComponent {
         formData.append('Lantin_TagName', this.TagForm.value.Lantin_TagName);
         formData.append('Local_TagName', this.TagForm.value.Local_TagName);
         formData.append('Image', this.selectedFile, this.selectedFile.name);
-        formData.append('listGroupID', this.GroupID);
-        // for (let i = 0; i < this.listGroupID.length; i++) {
-        //   formData.append('listGroupID', this.listGroupID[i]);
-        // }
+        // formData.append('listGroupID', this.GroupID);
+        for (let i = 0; i < this.GroupID.length; i++) {
+          formData.append('listGroupID', (this.GroupID[i].toString()));
+        }
     
         const headers = new HttpHeaders({
           Accept: '*/*',
@@ -328,22 +329,37 @@ export class TagsComponent {
     }
      
   }
-  onGroupChange(selectedGroup : any){
-    // console.log(selectedGroup);
-
-    
-    const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string; }) =>
-      Group.Lantin_GroupName.trim()
+  onGroupChange(selectedGroup: any) {
+    if (typeof selectedGroup === 'string' || selectedGroup instanceof String) {
+      // Handle single selection
+      const selectedGroupName = Array.isArray(selectedGroup) ? selectedGroup[0] : selectedGroup;
+      const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string }) =>
+        Group.Lantin_GroupName.trim() === selectedGroupName.trim()
       );
-      // console.log(selectedGroupData);
-
-      this.GroupID = selectedGroupData?.GroupID
-      this.selectedGroup = selectedGroupData
-      // console.log(this.GroupID);
-      // console.log(this.selectedGroup);
-      // console.log(selectedGroupData);
-      // this.addTheIdToList(this.GroupID)
+  
+      if (selectedGroupData) {
+        this.GroupID = [Number(selectedGroupData.GroupID)]; // Wrap single ID in an array
+        this.selectedGroup = selectedGroupData;
+      }
+    } else if (Array.isArray(selectedGroup)) {
+      // Handle multiple selections
+      this.GroupID = selectedGroup.map(group => {
+        const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string }) =>
+          Group.Lantin_GroupName.trim() === group.trim()
+        );
+        return selectedGroupData ? Number(selectedGroupData.GroupID) : null;
+      }).filter(id => id !== null);
+  
+      // Ensure this.GroupID is an array with each index corresponding to the group ID value
+      const tempArray = [];
+      for (let i = 0; i < this.GroupID.length; i++) {
+        tempArray[i] = this.GroupID[i];
+      }
+      this.GroupID = tempArray;
+      console.log(this.GroupID);
+    }
   }
+  
   // addTheIdToList(GroupID : any){
   //   console.log(GroupID);
     
