@@ -208,10 +208,10 @@ export class TagsComponent {
         formData.append('Lantin_TagName', this.TagForm.value.Lantin_TagName);
         formData.append('Local_TagName', this.TagForm.value.Local_TagName);
         formData.append('Image', this.selectedFile, this.selectedFile.name);
-    
-        for (let i = 0; i < this.listGroupID.length; i++) {
-          formData.append('listGroupID', this.listGroupID[i]);
-        }
+        formData.append('listGroupID', this.GroupID);
+        // for (let i = 0; i < this.listGroupID.length; i++) {
+        //   formData.append('listGroupID', this.listGroupID[i]);
+        // }
     
         const headers = new HttpHeaders({
           Accept: '*/*',

@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
 
     this.loginForm = this.fb.group({
       userName: ['123', Validators.required],
-      password: ['123456'],
+      password: [''],
     });
   }
 
@@ -51,7 +51,9 @@ export class LoginComponent implements OnInit {
     this.username = localStorage.getItem("User Name")
     this.userId = localStorage.getItem("User ID")
     // Subscribe to isLoggedInChanged to react to changes
-
+    // setTimeout(() => {
+    //   this.onSubmit()
+    // }, 1500);
 
   }
 
