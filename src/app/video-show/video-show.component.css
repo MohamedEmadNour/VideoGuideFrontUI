@@ -6,11 +6,12 @@ div.text-bg-dark {
     background-color: unset !important;
   }
 
-  pre {
+pre {
     color: black;
     white-space: pre-wrap;
     word-wrap: break-word;
     width: 100%;
+    font-size: 1.6rem;
 }
 .fav {
   cursor: pointer;

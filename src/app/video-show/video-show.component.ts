@@ -17,7 +17,9 @@ export class VideoShowComponent {
   VideoID : any
   UserID : any
   fav : any
+  Description : any
   vidFav : boolean = false ;
+
 
   sharedArray: string[] = [];
 
@@ -42,8 +44,9 @@ export class VideoShowComponent {
     this.VideoID = this.sharedArray[2]
     this.UserID = localStorage.getItem('User ID')
     this.fav = this.sharedArray[3]
+    this.Description = this.sharedArray[4]
     // console.log(this.fav);
-    // console.log(this.sharedArray);
+    console.log(this.sharedArray);
     
     if (this.fav) {
       this.vidFav = true

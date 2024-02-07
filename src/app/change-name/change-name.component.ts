@@ -23,7 +23,7 @@ export class ChangeNameComponent {
   }
 
   ngOnInit(): void {
-    this.UserNameChangeForm.get('userName')!.setValue(localStorage.getItem('User Name'));
+    this.UserNameChangeForm.get('userName')!.setValue(localStorage.getItem('UserCode'));
   }
 
   onSubmit() {

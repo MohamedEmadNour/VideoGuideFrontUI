@@ -79,7 +79,7 @@ export class HomeComponent {
       routerLink : `/home/changeName`,
     },
     {
-      label_Content : 'ChangePssword',
+      label_Content : 'Change Password',
       label_Contentar : 'تغيير كلمه السر',
       ngif : `this.isNormalAdmin` ,
       routerLink : `/home/changePassword`,

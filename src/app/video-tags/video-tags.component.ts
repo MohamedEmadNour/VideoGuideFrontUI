@@ -74,10 +74,10 @@ export class VideoTagsComponent {
 
 
 
-  ValueUserChose( VideoUrl : any , VideoName : any , VideoID : any , fav : any )
+  ValueUserChose( VideoUrl : any , VideoName : any , VideoID : any , fav : any , Description : any)
   {
     
-      const newData = [VideoUrl, VideoName, VideoID , fav ]; // New array data
+      const newData = [VideoUrl, VideoName, VideoID , fav , Description]; // New array data
       this.dataSharingService.updateSharedArray(newData);
     
     this.loginService.isInTagChange( true )

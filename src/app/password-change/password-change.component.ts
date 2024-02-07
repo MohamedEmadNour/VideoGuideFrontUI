@@ -22,7 +22,7 @@ export class PasswordChangeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.passwordChangeForm.get('userName')!.setValue(localStorage.getItem('User Name'));
+    this.passwordChangeForm.get('userName')!.setValue(localStorage.getItem('UserCode'));
   }
 
   onSubmit() {

@@ -20,6 +20,7 @@ export class RegistrationComponent {
   GroupOptions : any ;
   selectedGroup : any ;
   GroupID : any ;
+  Roles : any;
 
   constructor(
     private fb: FormBuilder,
@@ -31,8 +32,8 @@ export class RegistrationComponent {
       userName: ['', Validators.required],
       password: [''],
       fullName: ['', Validators.required],
-      roles: [[], Validators.required],
-      GroupID : [[], Validators.required]
+      roles: ['' , Validators.required],
+      GroupID : this.GroupID
 
     });
   }
@@ -74,16 +75,25 @@ export class RegistrationComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      const userData = this.registrationForm.value;
+      const userData = {
+        userName: this.registrationForm.get('userName')?.value,
+        password: this.registrationForm.get('password')?.value,
+        fullName: this.registrationForm.get('fullName')?.value,
+        roles: this.Roles,
+        listGroupID: this.GroupID.map((groupID: number) => ({ groupID }))
+      };
       this.phoneListService.register(userData).subscribe( {
        next:(response: any) => {
-        // console.log(response);
+        console.log(response);
         // console.log(userData);
         
         this.LoginShowPopup("User Registration Suc" , ` #00cc6d52 `)
         this.registrationForm.reset()
         },
         error : (error: any) => {
+        console.log(error);
+        console.log(userData);
+
         this.LoginShowPopup("User Registration False " , ` #e616166e `)
           
 
@@ -107,22 +117,44 @@ LoginShowPopup(x: string , color : string ): void {
     }, 3500);
   }
 }
+onRolesChange(selectedGroup: any){
+  if (selectedGroup && selectedGroup.length > 0) {
+    this.Roles = selectedGroup.map((item: any) => item.$ngOptionLabel.trim());
+    // console.log(this.Roles);
+  }
+}
 
-onGroupChange(selectedGroup : any){
-  // console.log(selectedGroup);
 
-  
-  const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string; }) =>
-    Group.Lantin_GroupName.trim() === selectedGroup.trim()
+
+onGroupChange(selectedGroup: any) {
+  if (typeof selectedGroup === 'string' || selectedGroup instanceof String) {
+    // Handle single selection
+    const selectedGroupName = Array.isArray(selectedGroup) ? selectedGroup[0] : selectedGroup;
+    const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string }) =>
+      Group.Lantin_GroupName.trim() === selectedGroupName.trim()
     );
-    // console.log(selectedGroupData);
 
-    this.GroupID = selectedGroupData?.GroupID
-    this.selectedGroup = selectedGroupData
+    if (selectedGroupData) {
+      this.GroupID = [Number(selectedGroupData.GroupID)]; // Wrap single ID in an array
+      this.selectedGroup = selectedGroupData;
+    }
+  } else if (Array.isArray(selectedGroup)) {
+    // Handle multiple selections
+    this.GroupID = selectedGroup.map(group => {
+      const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string }) =>
+        Group.Lantin_GroupName.trim() === group.trim()
+      );
+      return selectedGroupData ? Number(selectedGroupData.GroupID) : null;
+    }).filter(id => id !== null);
+
+    // Ensure this.GroupID is an array with each index corresponding to the group ID value
+    const tempArray = [];
+    for (let i = 0; i < this.GroupID.length; i++) {
+      tempArray[i] = this.GroupID[i];
+    }
+    this.GroupID = tempArray;
     // console.log(this.GroupID);
-    // console.log(this.selectedGroup);
-    // console.log(selectedGroupData);
-  
+  }
 }
 
 

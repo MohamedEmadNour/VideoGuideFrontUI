@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   isLoggedIn: boolean = false;
   username : any = ""
   Fullname : any = ""
+  UserName : any = ""
   userId : any = ""
   itarbs: boolean = false
 
@@ -90,10 +91,12 @@ export class LoginComponent implements OnInit {
           // console.log(this.username);
           this.userId = response.user.Id
           this.Fullname = response.user.FullName
+          this.UserName = response.user.UserName
           this.isLoggedIn = true
           this.loginService.login(response.Token , this.Fullname )
           //  window.location.reload();
           localStorage.setItem("User Name" , this.Fullname )
+          localStorage.setItem("UserCode" , this.UserName )
           localStorage.setItem("User ID" , this.userId )
           // setTimeout(() => {
           //   this.logout()
