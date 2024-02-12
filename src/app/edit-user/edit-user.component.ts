@@ -14,6 +14,9 @@ export class EditUserComponent {
   isNormalAdmin = false;
   isNormalUser = false;
 
+  Roles : any[] = [];
+  Active : any;
+
   constructor(
     private fb: FormBuilder,
      private phoneListService: PhoneListService ,
@@ -21,10 +24,10 @@ export class EditUserComponent {
      ) {
     this.registrationForm = this.fb.group({
       userName: ['', Validators.required],
-      password: ['', Validators.required],
+      // password: ['', Validators.required],
       fullName: ['', Validators.required],
-      Role: ['', Validators.required],
       active: ['', Validators.required],
+      roles: ['', Validators.required],
     });
   }
   ngOnInit(): void {
@@ -44,13 +47,22 @@ export class EditUserComponent {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      const userData = this.registrationForm.value;
+      const userData = {
+        userName: this.registrationForm.get('userName')?.value,
+        fullName: this.registrationForm.get('fullName')?.value,
+        active: this.Active,
+        roles: this.Roles,
+      };
       this.phoneListService.EditUser(userData).subscribe( {
        next:(response: any) => {
         this.LoginShowPopup("User Registration Suc")
         this.registrationForm.reset()
         },
         error : (error: any) => {
+          // console.log(error);
+          // console.log(userData);
+          
+          
         this.LoginShowPopup("User Registration False ")
           
 
@@ -72,6 +84,31 @@ LoginShowPopup(x: string): void {
         popup.style.display = 'none';
       }
     }, 1500);
+  }
+}
+
+onRolesChange(selectedGroup: any){
+  // console.log(selectedGroup);
+
+  // console.log(selectedGroup.$ngOptionLabel);
+
+  if (selectedGroup) {
+    this.Roles.push(selectedGroup.$ngOptionLabel);
+    // console.log(this.Roles);
+    // console.log(selectedGroup);
+    
+  }
+}
+onActiveChange(selectedGroup: any){
+  // console.log(selectedGroup);
+
+  // console.log(selectedGroup.$ngOptionLabel);
+
+  if (selectedGroup) {
+    this.Active = selectedGroup.$ngOptionLabel;
+    // console.log(this.Roles);
+    // console.log(selectedGroup);
+    
   }
 }
 

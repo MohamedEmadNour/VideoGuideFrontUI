@@ -54,6 +54,14 @@
                       <label for="Tag_Photo_Location">Tag_Photo_Location:</label>
                       <input type="text" id="Tag_Photo_Location" [(ngModel)]="selectedTag!.Tag_Photo_Location" formControlName="Tag_Photo_Location" class="form-control" >
                     </div>
+                    <!-- <div class="form-group">
+                      <label for="GroupID">Group Name: {{GroupOptions.length}}</label>
+
+                      <h5 *ngFor="let GroupOption of GroupOptions" style="color: black;">{{GroupOption.Lantin_GroupName}}</h5>
+                      <ng-select id="GroupID" [multiple]="true"  class="form-control" formControlName="GroupID"  [(ngModel)]="selectedGroupName" (ngModelChange)="onGroupChange($event)">
+                          <ng-option *ngFor="let GroupOption of GroupOptions"  [value]="GroupOption.Lantin_GroupName">{{GroupOption.Lantin_GroupName}}</ng-option>
+                      </ng-select>
+                  </div> -->
                     <div class="form-group">
                       <label for="Image">Image (JPG only):</label>
                       <input type="file" (change)="onFileSelected($event)" accept="image/jpeg" formControlName="Image" name="Image" id="Image" class="form-control"  />
@@ -86,7 +94,8 @@
                     <input type="file" (change)="onFileSelected($event)" formControlName="Image" accept="image/jpeg" name="Image" id="Image" class="form-control"  />
                   </div>
                   <div class="form-group">
-                    <label for="GroupID">Group Name:</label>
+                    <label for="GroupID" >Group Name: </label>
+                    
                     <ng-select id="GroupID"  [multiple]="true" class="form-control" formControlName="GroupID" (ngModelChange)="onGroupChange($event)" >
                         <ng-option *ngFor="let GroupOption of GroupOptions" [value]="GroupOption.Lantin_GroupName">{{GroupOption!.Lantin_GroupName}}</ng-option>
                     </ng-select>

@@ -84,11 +84,11 @@ export class HomeComponent {
       ngif : `this.isNormalAdmin` ,
       routerLink : `/home/changePassword`,
     },
-    {
-      label_Content : 'Reset Password',
-      label_Contentar : 'اعادة ضبط كلمه السر',
-      ngif : `this.isSuperAdmin` ,
-      routerLink : `/home/restpassword`,
-    },
+    // {
+    //   label_Content : 'Reset Password',
+    //   label_Contentar : 'اعادة ضبط كلمه السر',
+    //   ngif : `this.isSuperAdmin` ,
+    //   routerLink : `/home/restpassword`,
+    // },
   ]
 }

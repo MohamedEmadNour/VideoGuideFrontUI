@@ -16,8 +16,8 @@ export class PasswordChangeComponent implements OnInit {
   ) {
     this.passwordChangeForm = this.fb.group({
       userName: ['', Validators.required],
-      oldpassword: ['', Validators.required],
       password: ['', Validators.required],
+      newPassword: ['', Validators.required],
     });
   }
 
@@ -30,7 +30,7 @@ export class PasswordChangeComponent implements OnInit {
       const newPasswordData = this.passwordChangeForm.value;
       this.phoneListService.changePassword(newPasswordData).subscribe({
         next: (response: any) => {
-          // console.log(response);
+          console.log(response);
           this.LoginShowPopup("User Password Change Suc")
           this.passwordChangeForm.reset()
 

@@ -55,6 +55,7 @@ export class EditGroupComponent {
   }
 
   onFileSelected(event: any): void {
+    
     this.selectedFile = event.target.files[0];
     // console.log(event);
     
@@ -114,9 +115,10 @@ export class EditGroupComponent {
 
   onGroupChange(selectedGroup : any){
     // console.log(selectedGroup);
-    this.selectedGroupCase = true
     
-    const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string; }) =>
+    this.selectedGroupCase = true
+    if (selectedGroup) {
+      const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string; }) =>
       Group.Lantin_GroupName.trim() === selectedGroup.trim()
       );
       // console.log(selectedGroupData);
@@ -127,5 +129,7 @@ export class EditGroupComponent {
       // console.log(this.selectedGroup);
       // console.log(selectedGroupData);
     
+    }
+
   }
 }

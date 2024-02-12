@@ -7,8 +7,8 @@
             <div >
                 <div >
                     <div class="form-group">
-                        <label for="listId"> Users Name</label>
-                        <ng-select id="listId" class="form-control" formControlName="listId" (ngModelChange)="onUserChange($event) ;">
+                        <label for="listUserID"> Users Name</label>
+                        <ng-select id="listUserID" class="form-control" formControlName="listUserID" (ngModelChange)="onUserChange($event) ;" [multiple]="true ">
                             <ng-option *ngFor="let useroption of useroptions"  [value]="useroption.FullName" >{{useroption!.FullName}}</ng-option>
                         </ng-select>                    
                     </div>
@@ -19,7 +19,7 @@
                 <div >
                     <div class="form-group mt-2">
                         <label for="listGroupID">Group Name</label>
-                        <ng-select id="listGroupID" class="form-control" formControlName="listGroupID" (ngModelChange)="onGroupChange($event) ;">
+                        <ng-select id="listGroupID" class="form-control" formControlName="listGroupID" (ngModelChange)="onGroupChange($event) ;" [multiple]="true ">
                             <ng-option *ngFor="let groupoption of groupoptions"  [value]="groupoption.Lantin_GroupName" >{{groupoption!.Lantin_GroupName}}</ng-option>
                         </ng-select> 
                     </div>

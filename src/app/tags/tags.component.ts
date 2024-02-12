@@ -29,6 +29,8 @@ export class TagsComponent {
   GroupID : any ;
 
 
+  selectedGroupName: string | null = "";
+
 
 
 
@@ -131,7 +133,9 @@ export class TagsComponent {
     });
     this.phoneListService.getAllGroups().subscribe({
       next: (dataGroup: any) => {
-        // console.log(data);
+        //100003494
+        //12211221
+        console.log('dataGroup',dataGroup);
         this.GroupOptions = dataGroup
         
         // this.phoneListData = data;
@@ -150,23 +154,34 @@ export class TagsComponent {
     
   }
 
-  onTagChange(selectedTag : any){
-    // console.log(selectedTag);
-    this.selectedTagCase = true
+  onTagChange(selectedTag: any) {
+    this.selectedTagCase = true;
+
     if (typeof selectedTag === 'string') {
-      const selectedTagData = this.TagOptions.find((Tag: { Lantin_TagName: string; }) =>
-        Tag.Lantin_TagName.trim() === selectedTag.trim()
-    );
-        // console.log(selectedTagData);
-  
-        this.TagID = selectedTagData?.TagID
-        this.selectedTag = selectedTagData
-        // console.log(this.GroupID);
-        // console.log(this.selectedGroup);
-        // console.log(selectedGroupData);
+        const selectedTagData = this.TagOptions.find((Tag: { Lantin_TagName: string }) =>
+            Tag.Lantin_TagName.trim() === selectedTag.trim()
+        );
+
+        this.TagID = selectedTagData?.TagID;
+        this.selectedTag = selectedTagData;
+
+        // Check if GetTagGroup is defined and has length greater than zero
+        if (this.selectedTag) {
+          for (let i = 0; i < this.selectedTag.GetTagGroup.length; i++) {
+            
+            this.selectedGroupName += this.selectedTag.GetTagGroup[i].Lantin_GroupName;
+            
+          }
+        } else {
+            this.selectedGroupName = null; // Or set it to an appropriate default value
+        }
+
+        // console.log(this.selectedTag);
+        console.log(this.selectedGroupName);
+        
     }
-    
-  }
+}
+
 
   onSubmit() {
     if (this.edittags) {
@@ -177,7 +192,10 @@ export class TagsComponent {
       formData.append('Tag_Photo_Location', this.TagForm.value.Tag_Photo_Location);
       formData.append('Lantin_TagName', this.TagForm.value.Lantin_TagName);
       formData.append('Local_TagName', this.TagForm.value.Local_GroupName);
-    
+      for (let i = 0; i < this.GroupID.length; i++) {
+        formData.append('listGroupID', (this.GroupID[i].toString()));
+      }
+  
       if (this.selectedFile) {
         formData.append('Image', this.selectedFile, this.selectedFile.name);
       }
@@ -330,6 +348,8 @@ export class TagsComponent {
      
   }
   onGroupChange(selectedGroup: any) {
+    console.log('GroupOptions',this.GroupOptions);
+    
     if (typeof selectedGroup === 'string' || selectedGroup instanceof String) {
       // Handle single selection
       const selectedGroupName = Array.isArray(selectedGroup) ? selectedGroup[0] : selectedGroup;

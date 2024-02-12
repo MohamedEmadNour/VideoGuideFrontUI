@@ -45,6 +45,7 @@ export class VideosComponent {
       Video_Lantin_Description  : ['', Validators.required],
       Video_Local_Description  : ['', Validators.required],
       Video : ['', Validators.required],
+      visable : ['', Validators.required],
     });
 
 

@@ -121,7 +121,7 @@ export class PhoneListService {
       return this._HttpClient.post(url, user);
     }
     EditUser(user: any): Observable<any> {
-      const url = `${this.baseUrl}UpdateUser`;
+      const url = `${this.baseUrl}/UpdateUser`;
       return this._HttpClient.post(url, user);
     }
   
