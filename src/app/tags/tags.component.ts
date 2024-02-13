@@ -29,7 +29,8 @@ export class TagsComponent {
   GroupID : any ;
 
 
-  selectedGroupName: string | null = "";
+  selectedGroupName:  string[] = [];
+  
 
 
 
@@ -79,7 +80,7 @@ export class TagsComponent {
 
       TagID: [''],
       visable: [''],
-      GroupID: [''],
+      GroupID: [[]],
       Lantin_TagName: ['', Validators.required],
       Local_TagName: ['', Validators.required],
       Tag_Photo_Location: [''],
@@ -90,6 +91,7 @@ export class TagsComponent {
   ngOnInit(): void {
     this.addtags = false
     this.edittags = false
+    this.Assigntags = false
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
     //Add 'implements OnInit' to the class.
     this.loginService.isInData$.subscribe((isInData: boolean) => {
@@ -156,31 +158,22 @@ export class TagsComponent {
 
   onTagChange(selectedTag: any) {
     this.selectedTagCase = true;
-
+  
     if (typeof selectedTag === 'string') {
         const selectedTagData = this.TagOptions.find((Tag: { Lantin_TagName: string }) =>
             Tag.Lantin_TagName.trim() === selectedTag.trim()
         );
-
+  
         this.TagID = selectedTagData?.TagID;
         this.selectedTag = selectedTagData;
+  
+        this.selectedGroupName = this.selectedTag.GetTagGroup.map((group: { Lantin_GroupName: string }) => group.Lantin_GroupName);
 
-        // Check if GetTagGroup is defined and has length greater than zero
-        if (this.selectedTag) {
-          for (let i = 0; i < this.selectedTag.GetTagGroup.length; i++) {
-            
-            this.selectedGroupName += this.selectedTag.GetTagGroup[i].Lantin_GroupName;
-            
-          }
-        } else {
-            this.selectedGroupName = null; // Or set it to an appropriate default value
-        }
-
+  
         // console.log(this.selectedTag);
-        console.log(this.selectedGroupName);
-        
+        // console.log(this.selectedGroupName);
     }
-}
+  }
 
 
   onSubmit() {
@@ -209,6 +202,7 @@ export class TagsComponent {
           this.TagForm.reset();
           this.selectedTagCase = false
           // console.log(response);
+          this.ngOnInit()
         },
         error: (error: any) => {
           this.LoginShowPopup('Edit Tag Failed');
@@ -241,13 +235,15 @@ export class TagsComponent {
             this.LoginShowPopup('Add Tag Successful');
             this.TagForm.reset();
             this.selectedTagCase = false;
-            console.log(response);
+            // console.log(response);
+            this.ngOnInit()
+
           },
           error: (error: any) => {
             this.LoginShowPopup('Add Tag Failed');
-            console.log(error);
-            console.log(formData);
-            console.log(this.TagForm.value);
+            // console.log(error);
+            // console.log(formData);
+            // console.log(this.TagForm.value);
           }
         });
       }
@@ -271,6 +267,8 @@ export class TagsComponent {
           this.TagForm.reset();
           this.selectedTagCase = false;
           // console.log(response);
+          this.ngOnInit()
+
         },
         error: (error: any) => {
           this.LoginShowPopup('Tags Assign To Group Failed');
@@ -348,7 +346,7 @@ export class TagsComponent {
      
   }
   onGroupChange(selectedGroup: any) {
-    console.log('GroupOptions',this.GroupOptions);
+    // console.log('GroupOptions',this.GroupOptions);
     
     if (typeof selectedGroup === 'string' || selectedGroup instanceof String) {
       // Handle single selection
@@ -376,7 +374,7 @@ export class TagsComponent {
         tempArray[i] = this.GroupID[i];
       }
       this.GroupID = tempArray;
-      console.log(this.GroupID);
+      // console.log(this.GroupID);
     }
   }
   

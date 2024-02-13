@@ -87,13 +87,13 @@
                 <div *ngIf="selectedVideoCase">
                     <div class="form-group">
                         <label for="Video_Location">Video_Location :</label>
-                        <input type="text" id="Video_Location" [(ngModel)]="selectedVideo!.Video_Photo_Location" formControlName="Video_Location" class="form-control" >
+                        <input type="text" id="Video_Location" [(ngModel)]="selectedVideo!.Video_Location" formControlName="Video_Location" class="form-control" >
                       </div>
                     <div class="form-group">
                         <label for="visable">visable :</label>
-                        <ng-select id="visable" class="form-control" formControlName="visable" >
-                            <ng-option> True </ng-option>
-                            <ng-option> false </ng-option>
+                        <ng-select id="visable" class="form-control" [hideSelected]="true" [(ngModel)]="selectedVideo!.visable" formControlName="visable" >
+                            <ng-option>true</ng-option>
+                            <ng-option>false</ng-option>
                         </ng-select>
                     </div>
                     <div class="form-group">
@@ -112,6 +112,12 @@
                         <label for="Video_Local_Description">Video_Local_Description :</label>
                         <input type="text" id="Video_Local_Description" [(ngModel)]="selectedVideo!.Video_Local_Description" formControlName="Video_Local_Description" class="form-control" required>
                     </div>
+                    <div class="form-group">
+                      <label for="TagID">Tag Name:</label>
+                      <ng-select id="TagID" class="form-control" formControlName="TagID" [hideSelected]="true" [multiple]="true" [(ngModel)]="selectedTagName" (ngModelChange)="onTagChange($event)">
+                        <ng-option *ngFor="let TagOption of TagOptions" [value]="TagOption.Lantin_TagName">{{TagOption.Lantin_TagName}}</ng-option>
+                      </ng-select>
+                    </div>                    
                     <div class="form-group">
                         <label for="Video">Video :</label>
                         <input type="file" (change)="onFileSelected($event)" name="Video" id="Video" class="form-control" required />

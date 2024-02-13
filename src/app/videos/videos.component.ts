@@ -12,7 +12,7 @@ import { LoginService } from '../login-servic.service';
 export class VideosComponent {
   
   registrationForm: FormGroup;
-  selectedFile: File | undefined;
+  selectedFile: File | undefined | null;
   addVideo : boolean = false
   updateVideo : boolean = false
   TagOptions : any ;
@@ -25,6 +25,8 @@ export class VideosComponent {
   VideoID : any ;
 
   LoadingScreen : boolean = false
+  selectedTagName:  string[] = [];
+
 
 
   itarbs: boolean = false
@@ -38,7 +40,7 @@ export class VideosComponent {
     ) {
     this.registrationForm = this.fb.group({
       VideoID : ['', Validators.required],
-      TagID : [''],
+      TagID : [[]],
       Video_Location : ['', Validators.required],
       Video_Lantin_Title : ['', Validators.required],
       Video_Local_Tiltle : ['', Validators.required],
@@ -101,12 +103,13 @@ export class VideosComponent {
     });
   }
 
-
   onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
-    // console.log(event);
-    
+    if (event.target.files && event.target.files.length > 0) {
+      this.selectedFile = event.target.files[0];
+      // console.log(event);
+    }
   }
+  
   
   onSubmit() {
 
@@ -132,6 +135,8 @@ export class VideosComponent {
             this.registrationForm.reset();
             console.log(response);
             this.LoadingScreen = false
+            this.ngOnInit()
+
             
           },
           error: (error: any) => {
@@ -145,38 +150,42 @@ export class VideosComponent {
       }
     }
     if (this.updateVideo) {
+      this.LoadingScreen = true;
+    
+      const formData = new FormData();
+      formData.append('VideoID', this.VideoID );
+      formData.append('Video_Lantin_Title', this.registrationForm.value.Video_Lantin_Title);
+      formData.append('Video_Local_Tiltle', this.registrationForm.value.Video_Local_Tiltle);
+      formData.append('Video_Lantin_Description', this.registrationForm.value.Video_Lantin_Description);
+      formData.append('Video_Local_Description', this.registrationForm.value.Video_Local_Description);
+      formData.append('Video_Location', this.registrationForm.value.Video_Location);
       if (this.selectedFile) {
-        this.LoadingScreen = true
+        formData.append('Video', this.selectedFile!, this.selectedFile!.name);
+      } 
+    
 
-        const formData = new FormData();
-        formData.append('VideoID', this.VideoID );
-        formData.append('Video_Local_Tiltle', this.registrationForm.value.Video_Local_Tiltle);
-        formData.append('Video_Lantin_Description', this.registrationForm.value.Video_Lantin_Description);
-        formData.append('Video_Local_Description', this.registrationForm.value.Video_Local_Description);
-        formData.append('Video_Location', this.registrationForm.value.Video_Location);
-        formData.append('Video', this.selectedFile, this.selectedFile.name);
-        formData.append('visable', this.registrationForm.value.visable.$ngOptionLabel); // Ensure this value is correct
-
-  
-        this.phoneListService.AddVideo(formData).subscribe({
-          next: (response: any) => {
-            this.LoginShowPopup('Add Video Successful');
-            this.registrationForm.reset();
-            // console.log(response);
-            this.LoadingScreen = false
-
-            
-          },
-          error: (error: any) => {
-            this.LoginShowPopup('Add Video Failed');
-            // console.log(error);
-            this.LoadingScreen = false
-
-  
-          }
-        });
+    
+      formData.append('visable', this.registrationForm.value.visable.$ngOptionLabel); // Ensure this value is correct
+      
+      for (let i = 0; i < this.TagID.length; i++) {
+        formData.append(`listTagID[${i}]`, this.TagID[i]);
       }
+    
+      this.phoneListService.UpdateVideo(formData).subscribe({
+        next: (response: any) => {
+          this.LoginShowPopup('Add Video Successful');
+          this.registrationForm.reset();
+          this.LoadingScreen = false;
+          this.ngOnInit()
+        },
+        error: (error: any) => {
+          this.LoginShowPopup('Add Video Failed');
+          console.log(error);
+          this.LoadingScreen = false;
+        }
+      });
     }
+    
   }
 
   LoginShowPopup(x: string): void {
@@ -205,21 +214,23 @@ export class VideosComponent {
   }
 
 
-  onVideoChange(selectedVideo : any){
-    // console.log(selectedGroup);
-    this.selectedVideoCase = true
+  onVideoChange(selectedVideo: any) {
+    if (selectedVideo) {
+      this.selectedVideoCase = true;
     
-    const selectedVideoData = this.VideoOptions.find((Video: { Video_Lantin_Title : string; }) =>
-      Video.Video_Lantin_Title.trim() === selectedVideo.trim()
+      const selectedVideoData = this.VideoOptions.find((video: { Video_Lantin_Title: string }) =>
+        video.Video_Lantin_Title.trim() === selectedVideo.trim()
       );
-      // console.log(selectedVideoData);
+      
+      if (selectedVideoData) {
+        this.VideoID = selectedVideoData.VideoID;
+        this.selectedVideo = selectedVideoData;
+        
+        // Assuming GetVideoTagDTO contains an array of tags associated with the video
+        this.selectedTagName = selectedVideoData.GetVideoTagDTO.map((tag: { Lantin_TagName: string }) => tag.Lantin_TagName);
+      }
+    }
 
-      this.VideoID = selectedVideoData?.VideoID
-      this.selectedVideo = selectedVideoData
-      // console.log(this.GroupID);
-      // console.log(this.selectedGroup);
-      // console.log(selectedGroupData);
-    
   }
 
   AdminVideoHandeling( labelContent : string )

@@ -145,6 +145,12 @@ transform: rotate(-45deg) ;
     padding: 0.5rem;
     text-align: center;
   }
+  .ng-dropdown-panel .ng-option.ng-option-selected {
+    background-color: #f2f2f2; /* Change the background color */
+    color: #333; /* Change the font color */
+    border: 1px solid #ccc; /* Modify the border */
+    padding: 8px; /* Adjust padding */
+  }
 
 
   .popup {

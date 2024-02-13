@@ -38,11 +38,16 @@ export class LoginComponent implements OnInit {
       this.itarbs = iseng;
     });
 
-
     this.loginForm = this.fb.group({
       userName: ['123', Validators.required],
       password: [''],
     });
+
+
+    // this.loginForm = this.fb.group({
+    //   userName: ['100003494', Validators.required],
+    //   password: ['12211221'],
+    // });
   }
 
   

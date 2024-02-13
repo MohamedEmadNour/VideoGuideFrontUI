@@ -110,6 +110,10 @@ export class PhoneListService {
     const url = `${this.public}/api/VideoGuide/AddVideo`;
     return this._HttpClient.post(url, user);
   }
+  UpdateVideo(user: any): Observable<any> {
+    const url = `${this.public}/api/VideoGuide/Update_Video`;
+    return this._HttpClient.post(url, user);
+  }
 
 
 
