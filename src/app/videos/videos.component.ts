@@ -151,7 +151,6 @@ export class VideosComponent {
     }
     if (this.updateVideo) {
       this.LoadingScreen = true;
-    
       const formData = new FormData();
       formData.append('VideoID', this.VideoID );
       formData.append('Video_Lantin_Title', this.registrationForm.value.Video_Lantin_Title);
@@ -165,12 +164,8 @@ export class VideosComponent {
     
 
     
-      formData.append('visable', this.registrationForm.value.visable.$ngOptionLabel); // Ensure this value is correct
+      formData.append('visable', this.registrationForm.value.visable); // Ensure this value is correct
       
-      for (let i = 0; i < this.TagID.length; i++) {
-        formData.append(`listTagID[${i}]`, this.TagID[i]);
-      }
-    
       this.phoneListService.UpdateVideo(formData).subscribe({
         next: (response: any) => {
           this.LoginShowPopup('Add Video Successful');
@@ -225,7 +220,6 @@ export class VideosComponent {
       if (selectedVideoData) {
         this.VideoID = selectedVideoData.VideoID;
         this.selectedVideo = selectedVideoData;
-        
         // Assuming GetVideoTagDTO contains an array of tags associated with the video
         this.selectedTagName = selectedVideoData.GetVideoTagDTO.map((tag: { Lantin_TagName: string }) => tag.Lantin_TagName);
       }
