@@ -14,9 +14,9 @@
           <div *ngIf="selectedGroupCase">
               <div class="form-group">
                 <label for="visable">visable:</label>
-                <ng-select id="visable" class="form-control" formControlName="visable" >
-                    <ng-option> True </ng-option>
-                    <ng-option> false </ng-option>
+                <ng-select id="visable" class="form-control" [(ngModel)]="selectedGroup!.visable" formControlName="visable" >
+                  <ng-option [value]="true" > True </ng-option>
+                  <ng-option [value]="false"> False </ng-option>
                 </ng-select>
               </div>
               <div class="form-group">

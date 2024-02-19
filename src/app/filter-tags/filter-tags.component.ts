@@ -56,11 +56,11 @@ export class FilterTagsComponent {
   {
     this.phoneListService.getTagsOfCategory(GroupID).subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.tags = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -68,7 +68,7 @@ export class FilterTagsComponent {
         // this.loadingState = 'notLoading';
       },
     });
-    // console.log(GroupID);
+    // // console.log(GroupID);
     
   }
 
@@ -78,7 +78,7 @@ export class FilterTagsComponent {
     this.loginService.isInDataChange( true )
     this.loginService.isInTagValue( userClick )
     localStorage.setItem( 'TagID' , TagID )
-    // console.log(userClick);
+    // // console.log(userClick);
     
     // this.dataSharingService.setsharedDataCategory(UserClick);
   }

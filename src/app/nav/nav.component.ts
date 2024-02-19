@@ -18,7 +18,7 @@ export class NavComponent implements OnInit {
     });
     this.loginService.iseng$.subscribe((iseng: boolean) => {
       this.englag = iseng;
-      // console.log(this.englag);
+      // // console.log(this.englag);
       
     });
   }

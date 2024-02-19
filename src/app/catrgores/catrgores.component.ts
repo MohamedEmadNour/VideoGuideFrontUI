@@ -48,7 +48,7 @@ export class CatrgoresComponent {
     })
 
     this.authService.userRoles$.subscribe((roles) => {
-      // console.log(roles);
+      // // console.log(roles);
       
       this.isSuperAdmin = roles.includes('SuperAdmin');
       this.isNormalAdmin = roles.includes('Admin');
@@ -87,11 +87,11 @@ export class CatrgoresComponent {
 
     this.phoneListService.getAllGroups().subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.Grups = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {

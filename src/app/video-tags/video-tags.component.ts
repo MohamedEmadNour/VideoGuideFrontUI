@@ -55,11 +55,11 @@ export class VideoTagsComponent {
   {
     this.phoneListService.getVideosOfTags(TagID ,this.UserId ).subscribe({
       next: (data: any) => {
-         console.log(data);
+         // console.log(data);
         this.Videos = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -67,7 +67,7 @@ export class VideoTagsComponent {
         // this.loadingState = 'notLoading';
       },
     });
-    // console.log(TagID);
+    // // console.log(TagID);
     
   }
 

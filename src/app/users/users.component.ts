@@ -31,7 +31,7 @@ export class UsersComponent {
   ngOnInit(): void {
 
     this.authService.userRoles$.subscribe((roles) => {
-      // console.log(roles);
+      // // console.log(roles);
       
       this.isSuperAdmin = roles.includes('SuperAdmin');
       this.isNormalAdmin = roles.includes('Admin');

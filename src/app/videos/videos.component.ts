@@ -75,11 +75,11 @@ export class VideosComponent {
 
     this.phoneListService.getAllVideo().subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.VideoOptions = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -89,11 +89,11 @@ export class VideosComponent {
     });
     this.phoneListService.getAllTags().subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.TagOptions = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -106,7 +106,7 @@ export class VideosComponent {
   onFileSelected(event: any): void {
     if (event.target.files && event.target.files.length > 0) {
       this.selectedFile = event.target.files[0];
-      // console.log(event);
+      // // console.log(event);
     }
   }
   
@@ -127,13 +127,13 @@ export class VideosComponent {
         }
 
         
-        console.log(formData);
+        // console.log(formData);
         
         this.phoneListService.AddVideo(formData).subscribe({
           next: (response: any) => {
             this.LoginShowPopup('Add Video Successful');
             this.registrationForm.reset();
-            console.log(response);
+            // console.log(response);
             this.LoadingScreen = false
             this.ngOnInit()
 
@@ -141,7 +141,7 @@ export class VideosComponent {
           },
           error: (error: any) => {
             this.LoginShowPopup('Add Video Failed');
-            // console.log(error);
+            // // console.log(error);
             this.LoadingScreen = false
 
   
@@ -175,7 +175,7 @@ export class VideosComponent {
         },
         error: (error: any) => {
           this.LoginShowPopup('Add Video Failed');
-          console.log(error);
+          // console.log(error);
           this.LoadingScreen = false;
         }
       });
@@ -282,7 +282,7 @@ export class VideosComponent {
         tempArray[i] = this.TagID[i];
       }
       this.TagID = tempArray;
-      console.log(this.TagID);
+      // console.log(this.TagID);
       
     }  
   }

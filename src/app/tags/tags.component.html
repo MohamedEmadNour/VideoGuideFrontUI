@@ -37,9 +37,9 @@
                 <div *ngIf="selectedTagCase">
                     <div class="form-group">
                       <label for="visable">visable:</label>
-                      <ng-select id="visable" class="form-control" [hideSelected]="true" formControlName="visable" >
-                          <ng-option> true </ng-option>
-                          <ng-option> false </ng-option>
+                      <ng-select id="visable" class="form-control" [(ngModel)]="selectedTag!.visable" [hideSelected]="true" formControlName="visable" >
+                          <ng-option [value]="true" > True </ng-option>
+                          <ng-option [value]="false"> False </ng-option>
                       </ng-select>
                     </div>
                     <div class="form-group">

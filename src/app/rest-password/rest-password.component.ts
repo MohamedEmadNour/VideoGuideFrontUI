@@ -29,13 +29,13 @@ export class RestPasswordComponent {
       const newPasswordData = this.restpassword.value;
       this.phoneListService.restPassword(newPasswordData).subscribe({
         next: (response: any) => {
-          // console.log(response);
+          // // console.log(response);
           this.LoginShowPopup("User rest Suc")
           this.restpassword.reset()
 
         },
         error: (error: any) => {
-          // console.log(error);
+          // // console.log(error);
           this.LoginShowPopup("Error Server")
         },
       });

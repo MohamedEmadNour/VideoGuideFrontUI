@@ -63,7 +63,7 @@ export class PhoneListService {
       id : id,
       videoID : VideoID
     };
-    // console.log(requestBody);
+    // // console.log(requestBody);
     
     return this._HttpClient.post(`${this.public}/api/VideoGuide/AddFav`, requestBody);
   }
@@ -132,7 +132,7 @@ export class PhoneListService {
     // Login
     login(credentials: any): Observable<any> {
       const url = `${this.baseUrl}/login`;
-      // console.log(credentials);
+      // // console.log(credentials);
       
       return this._HttpClient.post(url, credentials);
     }

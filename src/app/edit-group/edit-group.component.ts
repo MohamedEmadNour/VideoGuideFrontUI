@@ -40,11 +40,11 @@ export class EditGroupComponent {
 
     this.phoneListService.getAllGroups().subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.GroupOptions = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -57,15 +57,14 @@ export class EditGroupComponent {
   onFileSelected(event: any): void {
     
     this.selectedFile = event.target.files[0];
-    // console.log(event);
+    // // console.log(event);
     
   }
   
   onSubmit() {
     const formData = new FormData();
-
     formData.append('GroupID', this.GroupID);
-    formData.append('visable', this.registrationForm.value.visable.$ngOptionLabel); // Ensure this value is correct
+    formData.append('visable', this.registrationForm.value.visable); // Ensure this value is correct
     formData.append('Group_Photo_Location', this.registrationForm.value.Group_Photo_Location);
     formData.append('Lantin_GroupName', this.registrationForm.value.Lantin_GroupName);
     formData.append('Local_GroupName', this.registrationForm.value.Local_GroupName);
@@ -83,13 +82,13 @@ export class EditGroupComponent {
         this.LoginShowPopup('Add Group Successful');
         this.registrationForm.reset();
         this.selectedGroupCase = false
-        // console.log(response);
+        // // console.log(response);
       },
       error: (error: any) => {
         this.LoginShowPopup('Add Group Failed');
-        // console.log(error);
-        // console.log(formData);
-        // console.log(this.registrationForm.value.visable.$ngOptionLabel);
+        // // console.log(error);
+        // // console.log(formData);
+        // // console.log(this.registrationForm.value.visable.$ngOptionLabel);
       }
     });
     
@@ -114,20 +113,21 @@ export class EditGroupComponent {
 
 
   onGroupChange(selectedGroup : any){
-    // console.log(selectedGroup);
-    
+    // // console.log(selectedGroup);
+    // console.log(this.registrationForm)
+
     this.selectedGroupCase = true
     if (selectedGroup) {
       const selectedGroupData = this.GroupOptions.find((Group: { Lantin_GroupName: string; }) =>
       Group.Lantin_GroupName.trim() === selectedGroup.trim()
       );
-      // console.log(selectedGroupData);
+      // // console.log(selectedGroupData);
 
       this.GroupID = selectedGroupData?.GroupID
       this.selectedGroup = selectedGroupData
-      // console.log(this.GroupID);
-      // console.log(this.selectedGroup);
-      // console.log(selectedGroupData);
+      // // console.log(this.GroupID);
+      // // console.log(this.selectedGroup);
+      // // console.log(selectedGroupData);
     
     }
 

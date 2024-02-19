@@ -102,7 +102,7 @@ export class TagsComponent {
     });
 
     this.authService.userRoles$.subscribe((roles) => {
-      // console.log(roles);
+      // // console.log(roles);
       
       this.isSuperAdmin = roles.includes('SuperAdmin');
       this.isNormalAdmin = roles.includes('Admin');
@@ -121,11 +121,11 @@ export class TagsComponent {
 
     this.phoneListService.getAllTags().subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.TagOptions = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -137,11 +137,11 @@ export class TagsComponent {
       next: (dataGroup: any) => {
         //100003494
         //12211221
-        console.log('dataGroup',dataGroup);
+        //// console.log('dataGroup',dataGroup);
         this.GroupOptions = dataGroup
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -170,8 +170,8 @@ export class TagsComponent {
         this.selectedGroupName = this.selectedTag.GetTagGroup.map((group: { Lantin_GroupName: string }) => group.Lantin_GroupName);
 
   
-        // console.log(this.selectedTag);
-        // console.log(this.selectedGroupName);
+        // // console.log(this.selectedTag);
+        // // console.log(this.selectedGroupName);
     }
   }
 
@@ -201,14 +201,14 @@ export class TagsComponent {
           this.LoginShowPopup('Edit Tag Successful');
           this.TagForm.reset();
           this.selectedTagCase = false
-          // console.log(response);
+          // // console.log(response);
           this.ngOnInit()
         },
         error: (error: any) => {
           this.LoginShowPopup('Edit Tag Failed');
-          // console.log(error);
-          // console.log(formData);
-          // console.log(this.registrationForm.value.visable.$ngOptionLabel);
+          // // console.log(error);
+          // // console.log(formData);
+          // // console.log(this.registrationForm.value.visable.$ngOptionLabel);
         }
       }); 
     }
@@ -235,15 +235,15 @@ export class TagsComponent {
             this.LoginShowPopup('Add Tag Successful');
             this.TagForm.reset();
             this.selectedTagCase = false;
-            // console.log(response);
+            // // console.log(response);
             this.ngOnInit()
 
           },
           error: (error: any) => {
             this.LoginShowPopup('Add Tag Failed');
-            // console.log(error);
-            // console.log(formData);
-            // console.log(this.TagForm.value);
+            // // console.log(error);
+            // // console.log(formData);
+            // // console.log(this.TagForm.value);
           }
         });
       }
@@ -266,14 +266,14 @@ export class TagsComponent {
           this.LoginShowPopup('Tags Assign To Group Successful');
           this.TagForm.reset();
           this.selectedTagCase = false;
-          // console.log(response);
+          // // console.log(response);
           this.ngOnInit()
 
         },
         error: (error: any) => {
           this.LoginShowPopup('Tags Assign To Group Failed');
-          // console.log(error);
-          // console.log(payload);
+          // // console.log(error);
+          // // console.log(payload);
         }
       });
     }
@@ -318,7 +318,7 @@ export class TagsComponent {
   tagsclick( tagid : number)
   {
     if (tagid == 1 ) {
-      // console.log(`addtags`);
+      // // console.log(`addtags`);
       this.addtags = true
       this.edittags = false
       this.isNormalAdmin = false
@@ -327,7 +327,7 @@ export class TagsComponent {
       
     }
     if (tagid == 2) {
-      // console.log(`edittags`);
+      // // console.log(`edittags`);
       this.edittags = true
       this.addtags = false
       this.Assigntags = false
@@ -335,7 +335,7 @@ export class TagsComponent {
       this.fetchGroups()
       return
     }    if (tagid == 3) {
-      // console.log(`edittags`);
+      // // console.log(`edittags`);
       this.Assigntags = true
       this.edittags = false
       this.addtags = false
@@ -346,7 +346,7 @@ export class TagsComponent {
      
   }
   onGroupChange(selectedGroup: any) {
-    // console.log('GroupOptions',this.GroupOptions);
+    // // console.log('GroupOptions',this.GroupOptions);
     
     if (typeof selectedGroup === 'string' || selectedGroup instanceof String) {
       // Handle single selection
@@ -374,17 +374,17 @@ export class TagsComponent {
         tempArray[i] = this.GroupID[i];
       }
       this.GroupID = tempArray;
-      // console.log(this.GroupID);
+      // // console.log(this.GroupID);
     }
   }
   
   // addTheIdToList(GroupID : any){
-  //   console.log(GroupID);
+  //   // console.log(GroupID);
     
   //   if (this.addtags) {
   //     if (Array.isArray(this.TagForm.value)) {
   //       this.listGroupID.push(...GroupID);
-  //       console.log(GroupID);
+  //       // console.log(GroupID);
 
   //     } else {
   //       this.listGroupID.push(GroupID);

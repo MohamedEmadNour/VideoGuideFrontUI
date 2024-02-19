@@ -32,14 +32,14 @@ export class EditUserComponent {
   }
   ngOnInit(): void {
     this.authService.userRoles$.subscribe((roles) => {
-      // console.log(roles);
+      // // console.log(roles);
       
       this.isSuperAdmin = roles.includes('SuperAdmin');
       this.isNormalAdmin = roles.includes('Admin');
       this.isNormalUser = roles.includes('User');
 
-      // console.log(this.isSuperAdmin);
-      // console.log(this.isNormalAdmin);
+      // // console.log(this.isSuperAdmin);
+      // // console.log(this.isNormalAdmin);
       
     });
   }
@@ -59,8 +59,8 @@ export class EditUserComponent {
         this.registrationForm.reset()
         },
         error : (error: any) => {
-          // console.log(error);
-          // console.log(userData);
+          // // console.log(error);
+          // // console.log(userData);
           
           
         this.LoginShowPopup("User Registration False ")
@@ -88,26 +88,26 @@ LoginShowPopup(x: string): void {
 }
 
 onRolesChange(selectedGroup: any){
-  // console.log(selectedGroup);
+  // // console.log(selectedGroup);
 
-  // console.log(selectedGroup.$ngOptionLabel);
+  // // console.log(selectedGroup.$ngOptionLabel);
 
   if (selectedGroup) {
     this.Roles.push(selectedGroup.$ngOptionLabel);
-    // console.log(this.Roles);
-    // console.log(selectedGroup);
+    // // console.log(this.Roles);
+    // // console.log(selectedGroup);
     
   }
 }
 onActiveChange(selectedGroup: any){
-  // console.log(selectedGroup);
+  // // console.log(selectedGroup);
 
-  // console.log(selectedGroup.$ngOptionLabel);
+  // // console.log(selectedGroup.$ngOptionLabel);
 
   if (selectedGroup) {
     this.Active = selectedGroup.$ngOptionLabel;
-    // console.log(this.Roles);
-    // console.log(selectedGroup);
+    // // console.log(this.Roles);
+    // // console.log(selectedGroup);
     
   }
 }
