@@ -136,7 +136,9 @@ export class VideosComponent {
             console.log(response);
             this.LoadingScreen = false
             this.ngOnInit()
-
+            formData.delete("Video");
+            const fileInput = document.getElementById('Video') as HTMLInputElement;
+            fileInput.value = '';
             
           },
           error: (error: any) => {
@@ -176,7 +178,11 @@ export class VideosComponent {
           this.LoginShowPopup('Add Video Successful');
           this.registrationForm.reset();
           this.LoadingScreen = false;
-          this.ngOnInit()
+          this.ngOnInit();
+          formData.delete("Video");
+          const fileInput = document.getElementById('Video') as HTMLInputElement;
+          fileInput.value = '';
+          
         },
         error: (error: any) => {
           this.LoginShowPopup('Add Video Failed');

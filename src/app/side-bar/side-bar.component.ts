@@ -129,12 +129,7 @@ export class SideBarComponent {
   
   onUserToggle()
   {
-    if (this.isLoggedIn && !this.isUserIcons) {
-      this.isUserIcons = true
-    }
-    else  if (this.isLoggedIn && this.isUserIcons) {
-      this.isUserIcons = false
-    }
+
   }
 
 

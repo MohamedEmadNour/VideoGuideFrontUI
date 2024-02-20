@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { LoginService } from '../login-servic.service';
 import { PhoneListService } from '../phone-list.service';
+import { DataSharingService } from '../data-sharing.service';
 
 
 @Component({
@@ -21,6 +22,7 @@ export class SearchComponent {
     private router:Router,
     public  loginService: LoginService,
     private phoneListService: PhoneListService,
+    private dataSharingService: DataSharingService,
 
 
 
@@ -101,12 +103,11 @@ export class SearchComponent {
     this.Array_FormVid = []
   }
 
-  ValueUserChose( VideoUrl : any , VideoName : any ,  VideoID : any ) 
+  ValueUserChose( VideoUrl : any , VideoName : any , VideoID : any , fav : any , Description : any) 
   {
     this.router.navigate(['/search/video']);
-    localStorage.setItem( 'VideoUrl' , VideoUrl )
-    localStorage.setItem( 'VideoName' , VideoName )
-    localStorage.setItem( 'VideoID' , VideoID )
+    const newData = [VideoUrl, VideoName, VideoID , fav , Description]; // New array data
+    this.dataSharingService.updateSharedArray(newData);
 
     
   }

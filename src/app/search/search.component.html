@@ -13,11 +13,14 @@
     </div>
     <div class="p-3 pb-5 text-bg-dark overflow-y-auto">
       <div class="row row-cols-1 justify-content-center " >
-          <div class="col-lg-4 text-center " *ngFor="let item of Array_FormVid"  (click)="ValueUserChose(item.Video , item.Video_Lantin_Title , item.VideoID)">
+          <div class="col-lg-4 text-center " *ngFor="let item of Array_FormVid"  (click)="ValueUserChose(item.Video , item.Video_Lantin_Title , item.VideoID , item.fav , item.Video_Lantin_Description)">
               <div class="position-relative">
                   <video class="shadow rounded-5" width="100%" >
                       <img src="" alt="">
                   </video>
+                  <div class="Hovringimg rounded-5 p-2 overflow-y-hidden">
+                    <img [src]="item.Frame" alt="" width="100%">
+                </div>
                   <div class="Hovring rounded-5 overflow-y-auto p-2">
                       <pre *ngIf="!this.itarbs">{{item.Video_Lantin_Description}}</pre>
                       <pre *ngIf="this.itarbs">{{item.Video_Local_Description}}</pre>
