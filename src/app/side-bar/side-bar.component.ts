@@ -138,6 +138,7 @@ export class SideBarComponent {
     // this.loginForm.reset()
     this.loginService.logout();
     // window.location.reload();
+    this. onUserClickedCat()
   }
 
   onUserClickedCat()
