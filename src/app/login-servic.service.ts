@@ -58,7 +58,7 @@ export class LoginService {
     // localStorage.setItem('userRole', 'admin');
     this.authService.setToken(credentials);
     localStorage.setItem('usertoken', credentials);
-    // console.log(credentials);
+    // // console.log(credentials);
    
     this.router.navigate(['/home']);
     // this.isLoggedInChanged.emit(true);
@@ -86,7 +86,7 @@ export class LoginService {
   isadminclicked ( isadminclicked : boolean  )
   {
     this._adminclock.next(isadminclicked); 
-    // console.log(isadminclicked);
+    // // console.log(isadminclicked);
   }
 
   isInLangChange(change : boolean ): void{
@@ -117,7 +117,7 @@ export class LoginService {
     if (userToken) {
       const tokenData = JSON.parse(atob(userToken.split('.')[1])); // Parse the token
       // Access the role claim using the full claim name
-      // console.log(tokenData);
+      // // console.log(tokenData);
       this._isAdmin.next(true);
 
       

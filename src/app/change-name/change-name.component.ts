@@ -29,11 +29,11 @@ export class ChangeNameComponent {
   onSubmit() {
     if (this.UserNameChangeForm.valid) {
       const NewNameChange = this.UserNameChangeForm.value;
-      console.log(NewNameChange);
+      // console.log(NewNameChange);
 
       this.phoneListService.changeUserName(NewNameChange).subscribe({
         next: (response: any) => {
-          console.log(response);
+          // console.log(response);
           this.LoginShowPopup("New Name Change Suc")
           this.UserNameChangeForm.reset()
           this.router.navigate(['/home']);
@@ -42,7 +42,7 @@ export class ChangeNameComponent {
 
         },
         error: (error: any) => {
-          console.log(error);
+          // console.log(error);
 
           this.LoginShowPopup(error.error.title)
         },

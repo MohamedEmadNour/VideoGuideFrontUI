@@ -91,9 +91,9 @@ export class LoginComponent implements OnInit {
       const credentials = this.loginForm.value;
       this.phoneListService.login(credentials).subscribe( {
         next:(response: any) => {
-          //  console.log(response.user.Id);
+          //  // console.log(response.user.Id);
           this.username = this.loginForm.value.userName;
-          // console.log(this.username);
+          // // console.log(this.username);
           this.userId = response.user.Id
           this.Fullname = response.user.FullName
           this.UserName = response.user.UserName
@@ -109,11 +109,11 @@ export class LoginComponent implements OnInit {
           
          },
          error : (error: any) => {
-          //  console.log(error);
+          //  // console.log(error);
           this.LoginShowPopup('Invalid email or password');
          }
        })
-      // console.log(credentials);
+      // // console.log(credentials);
        // Call the login method without .subscribe()
     } else {
       this.LoginShowPopup('Invalid email or password');

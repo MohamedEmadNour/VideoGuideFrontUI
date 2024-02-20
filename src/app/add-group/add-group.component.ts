@@ -22,7 +22,7 @@ export class AddGroupComponent {
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
-    console.log(event);
+    // console.log(event);
     
   }
   
@@ -38,12 +38,12 @@ export class AddGroupComponent {
         next: (response: any) => {
           this.LoginShowPopup('Add Group Successful');
           this.registrationForm.reset();
-          console.log(response);
+          // console.log(response);
           
         },
         error: (error: any) => {
           this.LoginShowPopup('Add Group Failed');
-          console.log(error);
+          // console.log(error);
 
         }
       });

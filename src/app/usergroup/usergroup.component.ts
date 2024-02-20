@@ -45,11 +45,11 @@ export class UsergroupComponent {
 
     this.phoneListService.getAllUser().subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.useroptions = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -59,11 +59,11 @@ export class UsergroupComponent {
     });
     this.phoneListService.getAllGroups().subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.groupoptions = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -93,7 +93,7 @@ export class UsergroupComponent {
       listGroupID: this.groupID.map((groupID: number) => ({ groupID })),
       listUserID: this.UserID.map((id: string) => ({ id }))
     };
-    // console.log(requestData);
+    // // console.log(requestData);
     
     // Send request to backend
     this.phoneListService.usertogroup(requestData).subscribe({
@@ -101,7 +101,7 @@ export class UsergroupComponent {
         // Handle successful response
         this.LoginShowPopup('Add Group Successful');
         this.formData.reset();
-        // console.log(response);
+        // // console.log(response);
       },
       error: (error: any) => {
         // Handle error response
@@ -135,19 +135,19 @@ export class UsergroupComponent {
     }
   }
   // onUserChange(selectedUser : any){
-  //   // console.log(selectedUser);
+  //   // // console.log(selectedUser);
   //   // this.selectedUserCase = true
   //   if (typeof selectedUser === 'string') {
   //       const selectedUserData = this.useroptions.find((User: { FullName: string; }) =>
   //       User.FullName.trim() === selectedUser.trim()
   //       );
-  //       // console.log(selectedUserData);
+  //       // // console.log(selectedUserData);
   
   //       this.UserID = selectedUserData?.Id
   //       this.selectedUser = selectedUserData
-  //       // console.log(this.GroupID);
-  //       // console.log(this.selectedGroup);
-  //       // console.log(selectedUserData);
+  //       // // console.log(this.GroupID);
+  //       // // console.log(this.selectedGroup);
+  //       // // console.log(selectedUserData);
   //     }
 
     
@@ -159,16 +159,16 @@ export class UsergroupComponent {
       const selectedUserData = this.useroptions.find((User: { FullName: string }) =>
         User.FullName.trim() === selectedUserName.trim()
       );
-      // console.log(this.UserID);
+      // // console.log(this.UserID);
         
-      // console.log(selectedUserData);
+      // // console.log(selectedUserData);
       if (selectedUserData) {
         // Assuming 'Id' is the correct property name for the user ID
         this.UserID = [selectedUserData.Id]; // Wrap single ID in an array
         this.selectedUser = selectedUserData;
-        // console.log(this.UserID);
+        // // console.log(this.UserID);
         
-        // console.log(selectedUserData);
+        // // console.log(selectedUserData);
       }
     } else if (Array.isArray(selectedUser)) {
       // Handle multiple selections
@@ -177,34 +177,34 @@ export class UsergroupComponent {
           User.FullName.trim() === user.trim()
         );
         
-        // console.log(selectedUserData);
+        // // console.log(selectedUserData);
         
         return selectedUserData ? selectedUserData.Id : null;
       }).filter(id => id !== null);
-      // console.log(this.UserID);
+      // // console.log(this.UserID);
 
     }
   }
   
   // onGroupChange(selectedgroup : any){
-  //   // console.log(selectedgroup);
+  //   // // console.log(selectedgroup);
   //   // this.selectedgroupCase = true
   //   if (typeof selectedgroup === 'string') {
   //     const selectedgroupData = this.groupoptions.find((group: { Lantin_GroupName: string; }) =>
   //       group.Lantin_GroupName.trim() === selectedgroup.trim()
   //       );
-  //       // console.log(selectedgroupData);
+  //       // // console.log(selectedgroupData);
   
   //       this.groupID = selectedgroupData?.GroupID
   //       this.selectedgroup = selectedgroupData
-  //       // console.log(this.GroupID);
-  //       // console.log(this.selectedGroup);
-  //       // console.log(selectedgroupData);
+  //       // // console.log(this.GroupID);
+  //       // // console.log(this.selectedGroup);
+  //       // // console.log(selectedgroupData);
   //   }
     
   // }
   onGroupChange(selectedGroup: any) {
-    console.log(selectedGroup);
+    // console.log(selectedGroup);
     
     if (typeof selectedGroup === 'string' || selectedGroup instanceof String) {
       // Handle single selection
@@ -212,7 +212,7 @@ export class UsergroupComponent {
       const selectedGroupData = this.groupoptions.find((Group: { Lantin_GroupName: string }) =>
         Group.Lantin_GroupName.trim() === selectedGroupName.trim()
       );
-    console.log(selectedGroupData);
+    // console.log(selectedGroupData);
       
       if (selectedGroupData) {
         this.groupID = [Number(selectedGroupData.GroupID)]; 
@@ -220,14 +220,14 @@ export class UsergroupComponent {
       }
     } 
     else if (Array.isArray(selectedGroup)) {
-//  console.log("arr");
+//  // console.log("arr");
  
       this.groupID = selectedGroup.map(group => {
         const selectedGroupData = this.groupoptions.find((Group: { Lantin_GroupName: string }) =>
           Group.Lantin_GroupName.trim() === group.trim()
           
           );
-          // console.log(selectedGroupData);
+          // // console.log(selectedGroupData);
         return selectedGroupData ? Number(selectedGroupData.GroupID) : null;
       }).filter(id => id !== null);
       
@@ -238,7 +238,7 @@ export class UsergroupComponent {
         tempArray[i] = this.groupID[i];
       }
       this.groupID = tempArray;
-      console.log(this.groupID);
+      // console.log(this.groupID);
     }
   }
 

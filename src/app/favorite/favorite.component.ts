@@ -48,10 +48,10 @@ export class FavoriteComponent {
     this.phoneListService.getFavVideo(UserID).subscribe({
       next: (data: any) => {
         this.Videos = data
-        // console.log(data);
+        // // console.log(data);
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -59,7 +59,7 @@ export class FavoriteComponent {
         // this.loadingState = 'notLoading';
       },
     });
-    // console.log(TagID);
+    // // console.log(TagID);
   }
 
   ValueUserChose( VideoUrl : any , VideoName : any , VideoID : any )

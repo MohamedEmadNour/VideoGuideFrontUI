@@ -37,7 +37,7 @@ export class SearchComponent {
   ngOnInit(): void {
  
     this.Array_FormVid = this.AllVideos
-    // console.log(this.Array_FormVid);
+    // // console.log(this.Array_FormVid);
     
   }
 
@@ -45,12 +45,12 @@ export class SearchComponent {
   {
     this.phoneListService.getSearchVideo(VideoSearch).subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.AllVideos = data
         this.Array_FormVid = this.AllVideos
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {

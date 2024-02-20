@@ -36,7 +36,7 @@ export class VideoShowComponent {
     //Add 'implements OnInit' to the class.
     this.dataSharingService.sharedArray$.subscribe(data => {
       this.sharedArray = data; // Update the local array in Component B
-      // console.log(this.sharedArray);
+      // // console.log(this.sharedArray);
     });
 
     this.VideoUrl = this.sharedArray[0]
@@ -45,8 +45,8 @@ export class VideoShowComponent {
     this.UserID = localStorage.getItem('User ID')
     this.fav = this.sharedArray[3]
     this.Description = this.sharedArray[4]
-    // console.log(this.fav);
-    console.log(this.sharedArray);
+    // // console.log(this.fav);
+    // console.log(this.sharedArray);
     
     if (this.fav) {
       this.vidFav = true
@@ -60,7 +60,7 @@ export class VideoShowComponent {
 
   UpViewForVideo( VideoID : any )
   {
-    // console.log(VideoID);
+    // // console.log(VideoID);
     
     this.PhoneListService.UpViewForVideo(VideoID).subscribe({
       next: (response: any) => {
@@ -73,8 +73,8 @@ export class VideoShowComponent {
 openAddingFav(VideoID: number, id: any): void {
     this.PhoneListService.AddingFav(VideoID, id).subscribe({
       next: (response: any) => {
-        // console.log(VideoID , id );
-        // console.log(response);
+        // // console.log(VideoID , id );
+        // // console.log(response);
         if (this.vidFav) {
           this.vidFav = false
 
@@ -91,7 +91,7 @@ openAddingFav(VideoID: number, id: any): void {
 
       },
       error: (error: any) => {
-        console.log(error);
+        // console.log(error);
         // Handle error
       }
     });

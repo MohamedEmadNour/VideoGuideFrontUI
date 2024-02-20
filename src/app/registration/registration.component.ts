@@ -39,14 +39,14 @@ export class RegistrationComponent {
   }
   ngOnInit(): void {
     this.authService.userRoles$.subscribe((roles) => {
-      // console.log(roles);
+      // // console.log(roles);
       
       this.isSuperAdmin = roles.includes('SuperAdmin');
       this.isNormalAdmin = roles.includes('Admin');
       this.isNormalUser = roles.includes('User');
 
-      // console.log(this.isSuperAdmin);
-      // console.log(this.isNormalAdmin);
+      // // console.log(this.isSuperAdmin);
+      // // console.log(this.isNormalAdmin);
       
     });
     this.fetchGroups()
@@ -59,11 +59,11 @@ export class RegistrationComponent {
 
     this.phoneListService.getAllGroups().subscribe({
       next: (data: any) => {
-        // console.log(data);
+        // // console.log(data);
         this.GroupOptions = data
         
         // this.phoneListData = data;
-        // console.log(this.phoneListData);
+        // // console.log(this.phoneListData);
       
       },
       error: () => {
@@ -84,15 +84,15 @@ export class RegistrationComponent {
       };
       this.phoneListService.register(userData).subscribe( {
        next:(response: any) => {
-        console.log(response);
-        // console.log(userData);
+        // console.log(response);
+        // // console.log(userData);
         
         this.LoginShowPopup("User Registration Suc" , ` #00cc6d52 `)
         this.registrationForm.reset()
         },
         error : (error: any) => {
-        console.log(error);
-        console.log(userData);
+        // console.log(error);
+        // console.log(userData);
 
         this.LoginShowPopup("User Registration False " , ` #e616166e `)
           
@@ -120,7 +120,7 @@ LoginShowPopup(x: string , color : string ): void {
 onRolesChange(selectedGroup: any){
   if (selectedGroup && selectedGroup.length > 0) {
     this.Roles = selectedGroup.map((item: any) => item.$ngOptionLabel.trim());
-    // console.log(this.Roles);
+    // // console.log(this.Roles);
   }
 }
 
@@ -153,7 +153,7 @@ onGroupChange(selectedGroup: any) {
       tempArray[i] = this.GroupID[i];
     }
     this.GroupID = tempArray;
-    // console.log(this.GroupID);
+    // // console.log(this.GroupID);
   }
 }
 
